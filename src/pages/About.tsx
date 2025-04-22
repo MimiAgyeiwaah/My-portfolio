@@ -1,6 +1,5 @@
 import { profilePicture } from '@/assets'
 import { hardSkills } from '@/constants'
-import React from 'react'
 
 function About() {
     return (
