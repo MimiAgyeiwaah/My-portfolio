@@ -1,6 +1,6 @@
-import { logo2, profilePicture } from '@/assets'
-import { Button } from '@/components/ui/button'
-import { mockups, testimonial } from '@/constants'
+// import { logo2, profilePicture } from '../../public/assets'
+import { Button } from '../components/ui/button'
+import { mockups, testimonial } from '../constants'
 import { ArrowRight, ChevronLeft, ChevronRight, Circle, Download } from 'lucide-react'
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
@@ -22,9 +22,9 @@ function Home() {
         <div className='w-full min-h-full flex flex-col items-center'>
             <section className="w-full min-[650px]:min-h-[500px] py-[2rem] min-[650px]:py-[6rem] gap-[2rem] flex flex-col items-center justify-between">
                 <div className="flex flex-col items-center gap-1 text-center font-[600]">
-                    <span className="text-[30px] min-[650px]:text-[44px] flex items-center text-gray-600">
+                    <span className="text-[30px] min-[650px]:text-[44px] flex items-center text-gray-500">
                         Hello, I'm
-                        <span><img src={logo2} alt="logo2" className="w-16" /></span>
+                        <span><img src={'assets/logo2.svg'} alt="logo2" className="w-16" /></span>
                         Mimi
                     </span>
                     <p className='text-[15px] min-[450px]:text-[30px] min-[650px]:text-[44px] min-[910px]:w-[900px] leading-[1.5rem] min-[450px]:leading-[2.5rem] min-[650px]:leading-[3rem]'>UI/UX & Graphic Designer creating seamless and visually stunning experiences</p>
@@ -45,16 +45,14 @@ function Home() {
             {/* About section .... */}
             <section className="w-full py-[4rem] flex md:flex-row flex-col items-center md:gap-[3rem] px-[0.5rem] sm:px-[1rem] md:px-[5rem] lg:px-[10rem] 2xl:px-[20rem]">
                 <div className="md:h-[540px] md:w-[650px] w-full min-[450px]:w-[300px] h-[300px] min-[450px]:h-[250px] overflow-hidden rounded-2xl relative">
-                    <img src={profilePicture} alt="profilepicture" className="w-full md:size-full object-cover md:relative absolute top-0 left-0" />
+                    <img src={'assets/profilePicture.svg'} alt="profilepicture" className="w-full md:size-full object-cover md:relative absolute top-0 left-0" />
                 </div>
                 <div className="w-full flex flex-col items-center md:items-start py-6 gap-4 md:text-left text-center">
                     <div className="flex flex-col items-center md:items-start gap-1">
                         <b className="text-[30px] sm:text-[40px]">About me</b>
-                        <hr className="w-3/5 border-2 border-primary" />
+                        <hr className="w-2/5 border-2 border-primary" />
                     </div>
-                    <p className='2xl:text-lg sm:text-base text-sm'>My journey as a UI/UX & Graphic Designer started with a passion for creativity and problem-solving. Guided into the tech space, I embraced design, turning ideas into intuitive experiences.</p>
-                    <p className='2xl:text-lg sm:text-base text-sm'>My design ethos is based on the idea that each and every pixel counts. Every choice, from the placement of a button that directs a user's journey to the color selection that conjures a particular emotion, is deliberate. Design is not just what it looks like; it's about how it works.</p>
-                    <p className='2xl:text-lg sm:text-base text-sm'>My goal is to provide users with an experience they didn't realize they were craving. Come along with me as I transform everyday events into remarkable designs.</p>
+                    <p className="md:text-[30px] lg:text-[40px] lg:leading-[50px] font-[200]">I’m a passionate creative with a love for intentional design, problem-solving, and turning ideas into meaningful digital experiences. Beyond design, I'm someone who values purpose, growth, and authenticity in everything I do.</p>
 
                     <Link to={`/about`}>
                         <span className='flex items-center gap-2 font-semibold cursor-pointer hover:text-primary'>Learn More <span><ArrowRight className='size-5'/></span></span>
@@ -66,7 +64,7 @@ function Home() {
                 <div className="flex flex-col items-center lg:items-start gap-6 2xl:w-[558px] 2xl:min-w-[558px] sm:w-[450px] sm:min-w-[450px] lg:text-left text-center">
                     <div className="w-fit flex flex-col lg:items-start items-center gap-1">
                         <b className="text-[30px] sm:text-[40px]">Recent Works</b>
-                        <hr className="w-3/5 border-2 border-primary" />
+                        <hr className="w-2/5 border-2 border-primary" />
                     </div>
                     <p className="md:text-[30px] lg:text-[40px] lg:leading-[50px] font-[200]">Explore a selection of my recent projects showcasing my design approach and problem solving skills.</p>
                 </div>

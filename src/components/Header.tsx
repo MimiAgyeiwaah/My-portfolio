@@ -1,4 +1,4 @@
-import { logo } from '@/assets'
+// import { logo } from '../../public/assets'
 import React from 'react'
 import { Menu, Plus } from 'lucide-react'
 import { Link } from 'react-router-dom'
@@ -8,7 +8,7 @@ function Header() {
     return (
         <div className='w-full min-h-[80px] sticky top-0 z-20 flex items-center justify-between px-[0.5rem] sm:px-[1rem] md:px-[5rem] xl:px-[10rem]'>
             <Link to="/" className="flex items-center gap-3">
-                <img src={logo} alt="logo" className="w-16 sm:w-20" />
+                <img src={'/assets/logo.svg'} alt="logo" className="w-16 sm:w-20" />
             </Link>
             <aside className="flex items-center gap-3 relative">
                 <div className={`absolute top-0 right-0 w-[283px] h-[330px] bg-primary z-10 text-white flex items-end transition-all duration-500 ${showMenu ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>

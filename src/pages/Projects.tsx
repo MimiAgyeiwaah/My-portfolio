@@ -1,4 +1,4 @@
-import { works } from '@/constants'
+import { works } from '../constants'
 import { ArrowRight } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 
@@ -16,6 +16,7 @@ function Projects() {
             <section className="w-fit grid sm:grid-cols-2 gap-4 md:gap-8">
                 {
                     works.map((work, idx)=>{
+                        console.log('work', work)
                         return <div className="w-full min-[1261px]:w-[568px] min-[1261px]:h-[434px] overflow-hidden group relative flex items-center justify-center" key={idx}>
                             <div onClick={()=>navigate(`/projects/${work.id}`)} className="p-3 absolute rounded-lg group-hover:flex flex sm:hidden scale-75 group-hover:scale-100 transition-all duration-500 items-end sm:bg-white bg-gradient-to-br from-primary to-green-600 text-white group hover:bg-primary min-w-[180px] min-h-[70px] cursor-pointer sm:text-gray-600 hover:text-white z-10">
                                 <div className="size-5 rounded-full bg-gray-700 group-hover:bg-white text-white group-hover:text-black flex items-center justify-center absolute top-3 right-3">
