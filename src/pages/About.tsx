@@ -18,17 +18,41 @@ function About() {
   };
 
   const toolkit = [
-    "/assets/Toolkit/Figma.svg",
-    "/assets/Toolkit/Photoshop.svg",
-    "/assets/Toolkit/Canva.svg",
-    "/assets/Toolkit/Sketch.svg",
-    "/assets/Toolkit/Mobbin.svg",
-    "/assets/Toolkit/Notion.svg",
-    "/assets/Toolkit/Slack.svg",
-    "/assets/Toolkit/Trello.svg",
-    "/assets/Toolkit/HTML5.svg",
-    "/assets/Toolkit/CSS3.svg",
-    "/assets/Toolkit/JavaScript.svg",
+    {
+      id: 1,
+      image: "/assets/Toolkit/Figma.svg",
+      name: "Figma",
+    },
+    {
+      id: 2,
+      image: "/assets/Toolkit/Photoshop.svg",
+      name: "Photoshop",
+    },
+    {
+      id: 3,
+      image: "/assets/Toolkit/Canva.svg",
+      name: "Canva",
+    },
+    {
+      id: 4,
+      image: "/assets/Toolkit/Notion.svg",
+      name: "Notion",
+    },
+    {
+      id: 5,
+      image: "/assets/Toolkit/Slack.svg",
+      name: "Slack",
+    },
+    {
+      id: 6,
+      image: "/assets/Toolkit/HTML5.svg",
+      name: "HTML5",
+    },
+    {
+      id: 7,
+      image: "/assets/Toolkit/CSS3.svg",
+      name: "CSS3",
+    },
   ];
 
   const howICraft = [
@@ -226,9 +250,11 @@ function About() {
             {hardSkills.map((skill, idx) => (
               <div
                 key={idx}
-                className="w-fit sm:text-base text-sm px-4 py-2 flex items-center justify-center rounded-[3rem] bg-white border border-primary-foreground"
+                className="p-[2px] rounded-[3rem] bg-gradient-to-r from-purple-500 via-orange-400 via-blue-500 via-red-500 to-purple-500"
               >
-                {skill}
+                <div className="bg-white rounded-[3rem] px-4 py-2 flex items-center justify-center sm:text-base text-sm">
+                  {skill}
+                </div>
               </div>
             ))}
           </section>
@@ -243,9 +269,11 @@ function About() {
             {hardSkills.slice(6).map((skill, idx) => (
               <div
                 key={idx}
-                className="w-fit sm:text-base text-sm px-4 py-2 flex items-center justify-center rounded-[3rem] bg-white border border-primary-foreground"
+                className="p-[2px] rounded-[3rem] bg-gradient-to-r from-purple-500 via-orange-400 via-blue-500 via-red-500 to-purple-500"
               >
-                {skill}
+                <div className="bg-white rounded-[3rem] px-4 py-2 flex items-center justify-center sm:text-base text-sm">
+                  {skill}
+                </div>
               </div>
             ))}
           </section>
@@ -260,21 +288,23 @@ function About() {
             <hr className="w-3/5 border-2 border-primary" />
           </div>
           <section className="w-full flex items-center gap-5 flex-wrap">
-            {toolkit.map((tool, index) => {
-              return (
-                <div
-                  key={index}
-                  className="w-fit h-fit hover:scale-110 transition-all duration-300 hover:cursor-pointer p-0 m-0 hover:shadow-lg rounded-lg hover:shadow-primary-foreground hover:bg-primary-foreground/20"
-                >
-                  <img
-                    src={tool}
-                    alt={`${index}`}
-                    className="object-cover w-full h-full"
-                  />
-                </div>
-              );
-            })}
+            {toolkit.map((tool, index) => (
+              <div
+                key={tool.id}
+                className="group relative w-24 h-24 flex items-center justify-center border border-black p-0 m-0 rounded-lg overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-primary-foreground hover:bg-primary-foreground/20 cursor-pointer"
+              >
+                <img
+                  src={tool.image}
+                  alt={`${index}`}
+                  className="object-cover w-[calc(100%-20px)] h-[calc(100%-20px)]  transition-transform duration-300 group-hover:scale-70"
+                />
+                <p className="absolute bottom-0 left-0 w-full  text-sm text-gray-700 text-center py-1 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                  {tool.name}
+                </p>
+              </div>
+            ))}
           </section>
+
           {/* How I Craft Experiences */}
           <br />
           <div
