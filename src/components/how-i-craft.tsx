@@ -40,7 +40,7 @@ function HowICraft({ howICraft }: { howICraft: HowICraftItem[] }) {
                   )}
                 >
                   {openIndex === index ? (
-                    <X className="h-6 w-6 text-white" />
+                    <X className="h-5 w-5 text-white" />
                   ) : (
                     <Plus className="h-6 w-6 text-gray-500" />
                   )}

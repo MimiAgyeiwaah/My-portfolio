@@ -10,7 +10,7 @@ function Header() {
             <Link to="/" className="flex items-center gap-3">
                 <img src={'/assets/logo.svg'} alt="logo" className="w-16 sm:w-20" />
             </Link>
-            <aside className="flex items-center gap-3 relative">
+            <aside className="flex items-center gap-3 relative transition-all duration-300">
                 <div className={`absolute top-0 right-0 w-[283px] h-[330px] bg-primary z-10 text-white flex items-end transition-all duration-500 ${showMenu ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
                     <Plus onClick={()=>setShowMenu(false)} className='absolute top-3 right-3 rotate-45 size-7 cursor-pointer transition-all duration-500 hover:-rotate-45'/>
                     <div className="flex flex-col items-start justify-center p-[2rem] gap-5">
@@ -20,9 +20,9 @@ function Header() {
                     </div>
                 </div>
 
-                <div onClick={()=>setShowMenu(true)} className={`size-[44px] flex items-center justify-center rounded-sm bg-[#8b5cf619] cursor-pointer`}>
-                    <Menu className="size-5 text-primary" />
-                </div>
+                <button onClick={()=>setShowMenu(true)} className={`group size-[44px] hover:bg-primary hover:text-white transition-all duration-300 flex items-center justify-center rounded-sm bg-[#8b5cf619] cursor-pointer`}>
+                    <Menu className="size-5 text-primary group-hover:text-white" />
+                </button>
             </aside>
             {/* {showMenu ? <div onClick={()=>setShowMenu(false)} className="fixed top-0 left-0 w-full h-full z-0"></div> : null} */}
         </div>
