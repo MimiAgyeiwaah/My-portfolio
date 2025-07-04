@@ -60,18 +60,18 @@ function About() {
     {
       question: "1) Research & Discovery",
       answer:
-        "I start by understanding the user's needs and goals. I then research the market and the competition to understand the user's pain points and how my design can solve them.",
+        "I start by understanding the problem, target users, and business goals. This includes conducting user research, analyzing competitors, and gathering insights to create a strong foundation.",
     },
     {
       question: "2) Ideation & Wireframing",
       answer:
-        "I start by understanding the problem, target users, and business goals. This includes conducting user research, analyzing competitors, and gathering insights to create a strong foundation.",
+        "Brainstorming and sketching ideas to define the structure and user flow. I create wireframes to map out the layout and functionality before diving into visuals.",
     },
 
     {
       question: "3) UI Design & Prototyping",
       answer:
-        "Brainstorming and sketching ideas to define the structure and user flow. I create wireframes to map out the layout and functionality before diving into visuals.",
+        "I bring ideas to life with high-fidelity designs, focusing on color, typography, and interactions. Prototyping helps visualize user interactions before development.",
     },
     {
       question: "4) Testing & Iteration",
