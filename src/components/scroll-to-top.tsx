@@ -34,7 +34,7 @@ const ScrollToTop = forwardRef<HTMLDivElement, ScrollToTopProps>(
     return (
       <button
         onClick={scrollToTop}
-        className={`fixed bottom-6 right-6 z-50 w-10 h-10 rounded-full bg-primary text-white text-xl shadow-md flex items-center justify-center transition-opacity duration-300 ${
+        className={`fixed bottom-6 right-6 z-50 w-10 h-10 rounded-full bg-primary cursor-pointer text-white text-xl shadow-md flex items-center justify-center transition-opacity duration-300 ${
           visible ? "opacity-100" : "opacity-0 pointer-events-none"
         } hover:bg-primary/80`}
         aria-label="Scroll to top"

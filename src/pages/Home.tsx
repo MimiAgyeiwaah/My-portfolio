@@ -11,14 +11,23 @@ import {
 import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
+import { AnimatedGroup } from "../components/ui/animated-group";
 
 function Home() {
   const [activeTestimonial, setActiveTestimonial] = React.useState(0);
   const [activeMockup, setActiveMockup] = React.useState(0);
 
+  const mainContentRef = useRef<HTMLDivElement>(null);
   const aboutRef = useRef<HTMLDivElement>(null);
   const aboutTextRef = useRef<HTMLParagraphElement>(null);
   const aboutTextHeaderRef = useRef<HTMLDivElement>(null);
+  const recentWorksHeaderRef = useRef<HTMLDivElement>(null);
+  const recentWorksTextRef = useRef<HTMLParagraphElement>(null);
+  const recentWorksMockupRef = useRef<HTMLDivElement>(null);
+  const testimonialSectionRef = useRef<HTMLElement>(null);
+  // const testimonialHeaderRef = useRef<HTMLDivElement>(null);
+  // const testimonialCardRef = useRef<HTMLDivElement>(null);
+
   // Scroll tracking relative to the element
   const { scrollYProgress } = useScroll({
     target: aboutRef,
@@ -34,29 +43,202 @@ function Home() {
     offset: ["start end", "start center"], // start when top hits bottom, end at center
   });
 
+  const { scrollYProgress: recentWorksHeaderProgress } = useScroll({
+    target: recentWorksHeaderRef,
+    offset: ["start end", "start center"], // start when top hits bottom, end at center
+  });
+
+  const { scrollYProgress: recentWorksTextProgress } = useScroll({
+    target: recentWorksTextRef,
+    offset: ["start end", "start center"], // start when top hits bottom, end at center
+  });
+
+  const { scrollYProgress: recentWorksMockupProgress } = useScroll({
+    target: recentWorksMockupRef,
+    offset: ["start end", "start center"],
+  });
+
+  const { scrollYProgress: testimonialCardProgress } = useScroll({
+    target: testimonialSectionRef,
+    offset: ["start 60%", "start 20%"], // start when top of section hits 60% of viewport, end at center
+  });
+
+  const { scrollYProgress: testimonialHeaderProgress } = useScroll({
+    target: testimonialSectionRef,
+    offset: ["start 60%", "start 40%"], // start when top of section hits 60% of viewport, end at center
+  });
+
   // Create smooth spring animations for X, Y, and opacity
+  const rawYTestimonialHeader = useTransform(
+    testimonialHeaderProgress,
+    [0, 0.4],
+    [-150, 0]
+  );
+  const rawOpacityTestimonialHeader = useTransform(
+    testimonialHeaderProgress,
+    [0, 0.4],
+    [0, 1]
+  );
+
+  const yTestimonialHeader = useSpring(rawYTestimonialHeader, {
+    stiffness: 100,
+    damping: 20,
+  });
+  const opacityTestimonialHeader = useSpring(rawOpacityTestimonialHeader, {
+    stiffness: 50,
+    damping: 15,
+  });
+  // About Transform Animations
   const rawX = useTransform(scrollYProgress, [0, 1], [-400, 0]);
   const rawY = useTransform(scrollYProgress, [0, 1], [400, 0]);
   const rawOpacity = useTransform(scrollYProgress, [0.8, 1], [0, 1]);
 
+  // About Spring Animations
   const x = useSpring(rawX, { stiffness: 100, damping: 20 });
   const y = useSpring(rawY, { stiffness: 100, damping: 20 });
   const opacity = useSpring(rawOpacity, { stiffness: 50, damping: 15 });
 
+  // About Text Transform Animations
   const rawXAboutText = useTransform(aboutTextProgress, [0, 1], [400, 0]);
   const rawYAboutText = useTransform(aboutTextProgress, [0, 1], [-400, 0]);
-  const rawOpacityAboutText = useTransform(aboutTextProgress, [0.95, 1], [0, 1]);
-  const rawOpacityAboutTextHeader = useTransform(aboutTextHeaderProgress, [0.95, 1], [0, 1]);
-  const rawXAboutTextHeader = useTransform(aboutTextHeaderProgress, [0, 1], [-60, 10]);
-  const rawYAboutTextHeader = useTransform(aboutTextHeaderProgress, [0, 1], [10, -50]);
+  const rawOpacityAboutText = useTransform(
+    aboutTextProgress,
+    [0.95, 1],
+    [0, 1]
+  );
+  const rawOpacityAboutTextHeader = useTransform(
+    aboutTextHeaderProgress,
+    [0.95, 1],
+    [0, 1]
+  );
+  const rawXAboutTextHeader = useTransform(
+    aboutTextHeaderProgress,
+    [0, 1],
+    [-60, 10]
+  );
+  const rawYAboutTextHeader = useTransform(
+    aboutTextHeaderProgress,
+    [0, 1],
+    [10, -50]
+  );
 
-  const xAboutTextHeader = useSpring(rawXAboutTextHeader, { stiffness: 100, damping: 20 });
-  const yAboutTextHeader = useSpring(rawYAboutTextHeader, { stiffness: 100, damping: 20 });
+  // Recent Works Header Transform Animations
+  const rawXRecentWorksHeader = useTransform(
+    recentWorksHeaderProgress,
+    [0, 1],
+    [0, 0]
+  );
+  const rawYRecentWorksHeader = useTransform(
+    recentWorksHeaderProgress,
+    [0, 1],
+    [-60, 0]
+  );
+
+  // Recent Works Text Transform Animations
+  const rawXRecentWorksText = useTransform(
+    recentWorksTextProgress,
+    [0, 1],
+    [-400, 0]
+  );
+  const rawYRecentWorksText = useTransform(
+    recentWorksTextProgress,
+    [0, 1],
+    [0, 0]
+  );
+  // const rawOpacityRecentWorksText = useTransform(recentWorksTextProgress, [0.95, 1], [0, 1]);
+
+  // Recent Works Mockup Transform Animations
+  const rawXRecentWorksMockup = useTransform(
+    recentWorksMockupProgress,
+    [0, 1],
+    [400, 0]
+  );
+  const rawYRecentWorksMockup = useTransform(
+    recentWorksMockupProgress,
+    [0, 1],
+    [0, 0]
+  );
+  const rawOpacityRecentWorksMockup = useTransform(
+    recentWorksMockupProgress,
+    [0.95, 1],
+    [0, 1]
+  );
+
+  // Testimonial Card Animation
+  const rawYTestimonialCard = useTransform(
+    testimonialCardProgress,
+    [0.5, 0.85],
+    [-350, 0]
+  );
+  const rawOpacityTestimonialCard = useTransform(
+    testimonialCardProgress,
+    [0.5, 0.85],
+    [0, 1]
+  );
+
+  // About Text Header Transform Animations
+  const xAboutTextHeader = useSpring(rawXAboutTextHeader, {
+    stiffness: 100,
+    damping: 20,
+  });
+  const yAboutTextHeader = useSpring(rawYAboutTextHeader, {
+    stiffness: 100,
+    damping: 20,
+  });
   const opacityAboutTextHeader = useSpring(rawOpacityAboutTextHeader, {
     stiffness: 50,
     damping: 15,
   });
 
+  // Recent Works Header Spring Animations
+  const xRecentWorksHeader = useSpring(rawXRecentWorksHeader, {
+    stiffness: 100,
+    damping: 20,
+  });
+  const yRecentWorksHeader = useSpring(rawYRecentWorksHeader, {
+    stiffness: 100,
+    damping: 20,
+  });
+
+  // Recent Works Text Spring Animations
+  const xRecentWorksText = useSpring(rawXRecentWorksText, {
+    stiffness: 100,
+    damping: 20,
+  });
+  const yRecentWorksText = useSpring(rawYRecentWorksText, {
+    stiffness: 100,
+    damping: 20,
+  });
+  // const opacityRecentWorksText = useSpring(rawOpacityRecentWorksText, {
+  //   stiffness: 50,
+  //   damping: 15,
+  // });
+
+  // Recent Works Mockup Spring Animations
+  const xRecentWorksMockup = useSpring(rawXRecentWorksMockup, {
+    stiffness: 100,
+    damping: 20,
+  });
+  const yRecentWorksMockup = useSpring(rawYRecentWorksMockup, {
+    stiffness: 100,
+    damping: 20,
+  });
+  const opacityRecentWorksMockup = useSpring(rawOpacityRecentWorksMockup, {
+    stiffness: 50,
+    damping: 15,
+  });
+
+  // Testimonial Card Spring Animation
+  const yTestimonialCard = useSpring(rawYTestimonialCard, {
+    stiffness: 100,
+    damping: 15,
+  });
+  const opacityTestimonialCard = useSpring(rawOpacityTestimonialCard, {
+    stiffness: 50,
+    damping: 15,
+  });
+
+  // About Text Spring Animations
   const xAboutText = useSpring(rawXAboutText, { stiffness: 100, damping: 20 });
   const yAboutText = useSpring(rawYAboutText, { stiffness: 100, damping: 20 });
   const opacityAboutText = useSpring(rawOpacityAboutText, {
@@ -76,7 +258,10 @@ function Home() {
   }, []);
 
   return (
-    <div className="w-full min-h-full space-y-16 md:space-y-24 flex flex-col items-center">
+    <div
+      ref={mainContentRef}
+      className="w-full min-h-full space-y-16 md:space-y-24 flex flex-col items-center font-montserrat"
+    >
       <section className="w-full space-y-14 md:space-y-18 gap-24 lg:gap-32 flex flex-col items-center justify-between">
         <motion.div
           initial={{ opacity: 0, y: -150 }}
@@ -90,7 +275,7 @@ function Home() {
           }}
           className="flex flex-col space-y-2 mt-18 md:mt-24 items-center gap-1 text-center font-semibold transition-opacity duration-500 delay-100"
         >
-          <span className="text-2xl min-[650px]:text-3xl md:text-5xl leading-px tracking-wider flex items-center text-gray-500">
+          <span className="text-2xl md:text-4xl lg:text-5xl leading-px flex items-center text-gray-500">
             Hello, I'm
             <div className="w-28 ">
               <img
@@ -101,9 +286,9 @@ function Home() {
             </div>
             Mimi
           </span>
-          <p className="text-2xl min-[450px]:text-4xl md:text-5xl transition-transform duration-500 delay-100 leading-snug text-center tracking-wider mx-auto md:max-w-6xl">
-            UI/UX & Graphic Designer creating <br /> seamless and visually
-            stunning experiences
+          <p className="text-2xl md:text-4xl lg:text-5xl transition-transform duration-500 delay-100 md:leading-14 text-center mx-auto md:max-w-7xl">
+            UI/UX & Graphic Designer creating <br className="hidden md:block" />
+            seamless and visually stunning experiences
           </p>
         </motion.div>
         <motion.div
@@ -156,7 +341,11 @@ function Home() {
         <div className="w-full flex flex-col items-center md:items-start py-6 gap-4 md:text-left text-center">
           <motion.div
             ref={aboutTextHeaderRef}
-            style={{ opacity: opacityAboutTextHeader, y: yAboutTextHeader, x: xAboutTextHeader }}
+            style={{
+              opacity: opacityAboutTextHeader,
+              y: yAboutTextHeader,
+              x: xAboutTextHeader,
+            }}
             className="flex flex-col items-center md:items-start gap-1"
           >
             <b className="text-[30px] sm:text-[40px]">About me</b>
@@ -167,7 +356,7 @@ function Home() {
             style={{ opacity: opacityAboutText, y: yAboutText, x: xAboutText }}
             className="md:text-[30px] lg:text-[40px] lg:leading-[50px] font-[200]"
           >
-            I’m a passionate creative with a love for intentional design,
+            I'm a passionate creative with a love for intentional design,
             problem-solving, and turning ideas into meaningful digital
             experiences. Beyond design, I'm someone who values purpose, growth,
             and authenticity in everything I do.
@@ -186,16 +375,36 @@ function Home() {
 
       <section className="w-full h-auto py-[4rem] pt-[1rem] md:pt-[8rem] md:py-[8rem] flex lg:flex-row flex-col 2xl:gap-[5rem] lg:gap-[3rem] gap-[2rem] xl:gap-[6rem] items-center min-[750px]:px-0 px-[0.5rem] lg:pl-[5rem] xl:pl-[10rem] min-[1809px]:pl-[20rem] min-[1809px]:px-[20rem]">
         <div className="flex flex-col items-center lg:items-start gap-6 2xl:w-[558px] 2xl:min-w-[558px] sm:w-[450px] sm:min-w-[450px] lg:text-left text-center">
-          <div className="w-fit flex flex-col lg:items-start items-center gap-1">
+          <motion.div
+            ref={recentWorksHeaderRef}
+            style={{ y: yRecentWorksHeader, x: xRecentWorksHeader }}
+            className="w-fit flex flex-col lg:items-start items-center gap-1"
+          >
             <b className="text-[30px] sm:text-[40px]">Recent Works</b>
             <hr className="w-2/5 border-2 border-primary" />
-          </div>
-          <p className="md:text-[30px] lg:text-[40px] lg:leading-[50px] font-[200]">
+          </motion.div>
+          <motion.p
+            ref={recentWorksTextRef}
+            style={{ y: yRecentWorksText, x: xRecentWorksText }}
+            transition={{
+              duration: 0.2,
+              delay: 0.2,
+            }}
+            className="md:text-[30px] lg:text-[40px] lg:leading-[50px] font-[200]"
+          >
             Explore a selection of my recent projects showcasing my design
             approach and problem solving skills.
-          </p>
+          </motion.p>
         </div>
-        <div className="w-full min-[750px]:w-[700px] lg:w-full h-[400px] xl:h-[490px] lg:flex-1 flex items-center relative overflow-hidden rounded-r-2xl sm:rounded-r-[3rem] lg:rounded-r-none rounded-l-2xl sm:rounded-l-[3rem]">
+        <motion.div
+          ref={recentWorksMockupRef}
+          style={{
+            y: yRecentWorksMockup,
+            x: xRecentWorksMockup,
+            opacity: opacityRecentWorksMockup,
+          }}
+          className="w-full min-[750px]:w-[700px] lg:w-full h-[400px] xl:h-[490px] lg:flex-1 flex items-center relative overflow-hidden rounded-r-2xl sm:rounded-r-[3rem] lg:rounded-r-none rounded-l-2xl sm:rounded-l-[3rem]"
+        >
           {mockups.map((mockup, index) => (
             <img
               key={index}
@@ -226,21 +435,41 @@ function Home() {
               <ChevronRight className="size-5 lg:size-8" />
             </button>
           </div>
-        </div>
+        </motion.div>
       </section>
 
-      <section className="w-full md:min-h-[100dvh] py-[4rem] md:py-[8rem] px-[0.5rem] flex flex-col items-center gap-[2rem] sm:gap-[5rem] bg-primary-foreground">
-        <div className="w-fit flex flex-col gap-1 items-center">
+      <section
+        ref={testimonialSectionRef}
+        className="w-full md:min-h-[100dvh] py-[4rem] md:py-[8rem] px-[0.5rem] flex flex-col items-center gap-[2rem] sm:gap-[5rem] bg-primary-foreground"
+      >
+        <motion.div
+          // ref={testimonialHeaderRef}
+          style={{ y: yTestimonialHeader, opacity: opacityTestimonialHeader }}
+          transition={{
+            duration: 0.1,
+            delay: 3.2,
+          }}
+          className="w-fit flex flex-col gap-1 items-center"
+        >
           <h1 className="font-semibold text-[30px] sm:text-[40px]">
             Client Testimonials
           </h1>
           <hr className="w-[100px] border-2 border-primary" />
           <p className="md:w-[600px] text-center text-gray-700 text-sm sm:text-base md:text-[18px] mt-3">
-            Here’s what clients and collaborators have to say about working with
+            Here's what clients and collaborators have to say about working with
             me.
           </p>
-        </div>
-        <div className="p-6 pt-0 flex flex-col sm:gap-4 rounded-2xl bg-white lg:w-[800px] min-h-[247px] transition-all duration-500 md:text-left text-center">
+        </motion.div>
+        <motion.div
+          // ref={testimonialCardRef}
+          style={{ y: yTestimonialCard, opacity: opacityTestimonialCard }}
+          transition={{
+            duration: 1,
+            delay: 5.0,
+            ease: "circIn",
+          }}
+          className="p-6 pt-0 flex flex-col sm:gap-4 rounded-2xl shadow-lg bg-white lg:w-[800px] min-h-[247px] md:text-left text-center"
+        >
           <section className="w-full flex md:flex-row flex-col items-center justify-between md:py-0 py-6">
             <aside className="flex md:flex-row flex-col items-center gap-2">
               <div className="w-[50px] h-[50px] rounded-full bg-gray-200 relative flex items-center justify-center">
@@ -281,7 +510,7 @@ function Home() {
           <p className="text-sm sm:text-base md:text-[18px] text-gray-700">
             {testimonial[activeTestimonial].description}
           </p>
-        </div>
+        </motion.div>
 
         <div className="flex gap-6 items-center">
           <button
@@ -334,61 +563,124 @@ function Home() {
       </section>
 
       {/* Get in touch */}
-      <section className="w-full md:h-[600px] py-[4rem] md:py-[8rem] pb-[3rem] px-[0.5rem] gap-[3rem] md:gap-0 flex flex-col items-center justify-between">
-        <div className="w-fit flex flex-col gap-1 items-center">
+      <section className="w-full px-[0.5rem] gap-y-6 md:gap-0 flex flex-col items-center justify-between h-full space-y-20 mt-20">
+        <motion.div
+          whileInView={{ y: 0, opacity: 1 }}
+          initial={{ y: -300, opacity: 0 }}
+          transition={{
+            delay: 1.0,
+            ease: "circInOut",
+            type: "spring",
+            stiffness: 100,
+          }}
+          className="w-fit flex flex-col gap-1 items-center space-y-1"
+        >
           <h1 className="font-semibold text-[30px] sm:text-[40px]">
             Get In Touch
           </h1>
           <hr className="w-[80px] border-2 border-primary" />
           <p className="sm:w-[600px] text-center sm:text-base text-sm ">
-            Let’s create something amazing together. Reach out for
+            Let's create something amazing together. Reach out for
             collaborations, question, or just to say hello.{" "}
           </p>
-        </div>
-        <div className="p-3 rounded-lg cursor-pointer transition-all duration-300 flex items-end relative bg-gray-200 hover:bg-primary w-[150px] h-[70px] text-gray-600 hover:text-white group">
-          <div className="size-5 rounded-full bg-gray-700 text-white flex items-center justify-center absolute top-3 right-3">
-            <ArrowRight className="size-4 -rotate-45" />
+        </motion.div>
+        <motion.a
+          whileInView={{ y: 0, x: 0, opacity: 1 }}
+          initial={{ y: -200, x: -200, opacity: 0 }}
+          transition={{
+            delay: 2.0,
+            ease: "circInOut",
+            type: "spring",
+            stiffness: 100,
+          }}
+          href="/contact"
+          className=" group flex mt-12 hover:bg-primary  items-end justify-between p-1 rounded-md w-40 h-16 gap-1  bg-[#21212114] hover:text-white"
+        >
+          <span className="text-gray-500 group-hover:text-white transition-all duration-300 p-1">
+            Let’s Talk
+          </span>
+          <div className="h-full flex flex-col items-end">
+            <span className="bg-black/70 group-hover:bg-white transition-all duration-300 rounded-full p-0.5 m-1">
+              <ArrowRight className="size-4 text-sm text-gray-100 group-hover:text-black -rotate-45" />
+            </span>
           </div>
-          <h1>Let's Talk</h1>
-        </div>
-        <div className="flex flex-wrap items-center justify-center gap-[1rem] sm:gap-[4rem]">
-          <a
-            href="/"
-            className="size-10 flex items-center justify-center bg-primary-foreground rounded-full"
+        </motion.a>
+
+        {/* <div > */}
+        <AnimatedGroup
+          // className='grid h-full grid-cols-2 gap-8 p-12 md:grid-cols-3 lg:grid-cols-4'
+          className="flex items-start justify-center w-full gap-1 space-y-12 space-x-14 mt-5 "
+          variants={{
+            container: {
+              visible: {
+                transition: {
+                  staggerChildren: 0.1,
+                },
+              },
+            },
+            item: {
+              hidden: {
+                opacity: 0,
+                filter: "blur(12px)",
+                y: -60,
+                rotateX: 90,
+              },
+              visible: {
+                opacity: 1,
+                filter: "blur(0px)",
+                y: 0,
+                rotateX: 0,
+                transition: {
+                  type: "spring",
+                  bounce: 0.3,
+                  duration: 1,
+                  delay: 0.1,
+                },
+              },
+            },
+          }}
+        >
+          <Link
+            to={"#"}
+            className="group hover:bg-primary transition-all duration-300 rounded-full w-10 h-10 bg-primary/10 flex justify-center items-center"
           >
             <svg
-              width="18"
+              width="17"
               height="16"
-              viewBox="0 0 18 16"
+              viewBox="0 0 17 16"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
+              // className="group-hover:fill-white transition-all duration-300"
             >
               <path
-                d="M0.5 1.85859C0.5 1.31985 0.691447 0.87541 1.07432 0.525253C1.4572 0.175079 1.95496 0 2.56757 0C3.16925 0 3.65604 0.17238 4.02799 0.517172C4.41087 0.872727 4.60232 1.33602 4.60232 1.90707C4.60232 2.42424 4.41635 2.85521 4.0444 3.2C3.66152 3.55556 3.1583 3.73333 2.53475 3.73333H2.51834C1.91666 3.73333 1.42986 3.55556 1.05792 3.2C0.685966 2.84444 0.5 2.3973 0.5 1.85859ZM0.71332 16V5.20404H4.35618V16H0.71332ZM6.37452 16H10.0174V9.97172C10.0174 9.5946 10.0611 9.30369 10.1486 9.09899C10.3018 8.73265 10.5343 8.42289 10.846 8.1697C11.1578 7.91649 11.5489 7.7899 12.0193 7.7899C13.2445 7.7899 13.8571 8.60336 13.8571 10.2303V16H17.5V9.8101C17.5 8.21548 17.1171 7.00606 16.3514 6.18182C15.5856 5.35758 14.5737 4.94545 13.3156 4.94545C11.9044 4.94545 10.805 5.54343 10.0174 6.73939V6.77172H10.001L10.0174 6.73939V5.20404H6.37452C6.39639 5.54882 6.40734 6.62086 6.40734 8.4202C6.40734 10.2195 6.39639 12.7461 6.37452 16Z"
+                d="M0 1.85859C0 1.31985 0.191447 0.87541 0.574324 0.525253C0.957202 0.175079 1.45496 0 2.06757 0C2.66925 0 3.15604 0.17238 3.52799 0.517172C3.91087 0.872727 4.10232 1.33602 4.10232 1.90707C4.10232 2.42424 3.91635 2.85521 3.5444 3.2C3.16152 3.55556 2.6583 3.73333 2.03475 3.73333H2.01834C1.41666 3.73333 0.929864 3.55556 0.557915 3.2C0.185966 2.84444 0 2.3973 0 1.85859ZM0.21332 16V5.20404H3.85618V16H0.21332ZM5.87452 16H9.51737V9.97172C9.51737 9.5946 9.56114 9.30369 9.64865 9.09899C9.8018 8.73265 10.0343 8.42289 10.346 8.1697C10.6578 7.91649 11.0489 7.7899 11.5193 7.7899C12.7445 7.7899 13.3571 8.60336 13.3571 10.2303V16H17V9.8101C17 8.21548 16.6171 7.00606 15.8514 6.18182C15.0856 5.35758 14.0737 4.94545 12.8156 4.94545C11.4044 4.94545 10.305 5.54343 9.51737 6.73939V6.77172H9.50097L9.51737 6.73939V5.20404H5.87452C5.89639 5.54882 5.90734 6.62086 5.90734 8.4202C5.90734 10.2195 5.89639 12.7461 5.87452 16Z"
                 fill="#8B5CF6"
+                className="group-hover:fill-white transition-all duration-300"
               />
             </svg>
-          </a>
-          <a
-            href="/"
-            className="size-10 flex items-center justify-center bg-primary-foreground rounded-full"
+          </Link>
+          <Link
+            to={"#"}
+            className="group hover:bg-primary transition-all duration-300 rounded-full w-10 h-10 bg-primary/10 flex justify-center items-center"
           >
             <svg
-              width="22"
+              width="21"
               height="14"
-              viewBox="0 0 22 14"
+              viewBox="0 0 21 14"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                d="M6.45455 5.79615C6.96087 5.79615 7.44645 5.5926 7.80448 5.23027C8.1625 4.86794 8.36364 4.37651 8.36364 3.8641C8.36364 3.35169 8.1625 2.86027 7.80448 2.49794C7.44645 2.13561 6.96087 1.93205 6.45455 1.93205H2.15909V5.79615H6.45455ZM7.40909 7.7282H2.15909V11.5923H7.40909C7.91541 11.5923 8.401 11.3888 8.75902 11.0264C9.11705 10.6641 9.31818 10.1727 9.31818 9.66025C9.31818 9.14784 9.11705 8.65642 8.75902 8.29409C8.401 7.93176 7.91541 7.7282 7.40909 7.7282ZM9.37832 6.34872C10.0938 6.7841 10.6485 7.4448 10.9576 8.22965C11.2667 9.01449 11.3131 9.88023 11.0897 10.6943C10.8663 11.5084 10.3854 12.2259 9.72063 12.737C9.05589 13.2482 8.24394 13.5247 7.40909 13.5244H0.25V1.70022e-08H6.45455C7.18158 -6.89919e-05 7.89353 0.209934 8.50667 0.605319C9.11981 1.0007 9.60867 1.56503 9.91576 2.23195C10.2229 2.89888 10.3354 3.64067 10.2402 4.37011C10.145 5.09956 9.84598 5.78633 9.37832 6.34969M14.0909 0.966025H19.3409V2.41506H14.0909V0.966025ZM21.25 9.17724H14.0909V9.41875C14.0907 10.0155 14.289 10.5949 14.6539 11.0637C15.0188 11.5325 15.5291 11.8632 16.1024 12.0027C16.6757 12.1422 17.2787 12.0822 17.8143 11.8325C18.3498 11.5828 18.7867 11.1579 19.0545 10.6263H21.0915C20.8007 11.6969 20.1363 12.6246 19.2214 13.2374C18.3065 13.8503 17.2032 14.1068 16.1157 13.9594C15.0283 13.812 14.0305 13.2707 13.3072 12.4359C12.5838 11.601 12.184 10.5291 12.1818 9.41875V7.96971C12.1818 6.75273 12.6595 5.5856 13.5098 4.72507C14.3601 3.86453 15.5134 3.38109 16.7159 3.38109C17.9184 3.38109 19.0717 3.86453 19.922 4.72507C20.7723 5.5856 21.25 6.75273 21.25 7.96971V9.17724ZM19.2416 7.24519C19.0853 6.68923 18.7542 6.2 18.2984 5.85166C17.8426 5.50332 17.2871 5.31486 16.7159 5.31486C16.1448 5.31486 15.5892 5.50332 15.1334 5.85166C14.6776 6.2 14.3465 6.68923 14.1902 7.24519H19.2416Z"
+                d="M6.20455 5.79615C6.71087 5.79615 7.19645 5.5926 7.55448 5.23027C7.9125 4.86794 8.11364 4.37651 8.11364 3.8641C8.11364 3.35169 7.9125 2.86027 7.55448 2.49794C7.19645 2.13561 6.71087 1.93205 6.20455 1.93205H1.90909V5.79615H6.20455ZM7.15909 7.7282H1.90909V11.5923H7.15909C7.66541 11.5923 8.151 11.3888 8.50902 11.0264C8.86705 10.6641 9.06818 10.1727 9.06818 9.66025C9.06818 9.14784 8.86705 8.65642 8.50902 8.29409C8.151 7.93176 7.66541 7.7282 7.15909 7.7282ZM9.12832 6.34872C9.84378 6.7841 10.3985 7.4448 10.7076 8.22965C11.0167 9.01449 11.0631 9.88023 10.8397 10.6943C10.6163 11.5084 10.1354 12.2259 9.47063 12.737C8.80589 13.2482 7.99394 13.5247 7.15909 13.5244H0V1.70022e-08H6.20455C6.93158 -6.89919e-05 7.64353 0.209934 8.25667 0.605319C8.86981 1.0007 9.35867 1.56503 9.66576 2.23195C9.97285 2.89888 10.0854 3.64067 9.99021 4.37011C9.895 5.09956 9.59598 5.78633 9.12832 6.34969M13.8409 0.966025H19.0909V2.41506H13.8409V0.966025ZM21 9.17724H13.8409V9.41875C13.8407 10.0155 14.039 10.5949 14.4039 11.0637C14.7688 11.5325 15.2791 11.8632 15.8524 12.0027C16.4257 12.1422 17.0287 12.0822 17.5643 11.8325C18.0998 11.5828 18.5367 11.1579 18.8045 10.6263H20.8415C20.5507 11.6969 19.8863 12.6246 18.9714 13.2374C18.0565 13.8503 16.9532 14.1068 15.8657 13.9594C14.7783 13.812 13.7805 13.2707 13.0572 12.4359C12.3338 11.601 11.934 10.5291 11.9318 9.41875V7.96971C11.9318 6.75273 12.4095 5.5856 13.2598 4.72507C14.1101 3.86453 15.2634 3.38109 16.4659 3.38109C17.6684 3.38109 18.8217 3.86453 19.672 4.72507C20.5223 5.5856 21 6.75273 21 7.96971V9.17724ZM18.9916 7.24519C18.8353 6.68923 18.5042 6.2 18.0484 5.85166C17.5926 5.50332 17.0371 5.31486 16.4659 5.31486C15.8948 5.31486 15.3392 5.50332 14.8834 5.85166C14.4276 6.2 14.0965 6.68923 13.9402 7.24519H18.9916Z"
                 fill="#8B5CF6"
+                className="group-hover:fill-white transition-all duration-300"
               />
             </svg>
-          </a>
-          <a
-            href="/"
-            className="size-10 flex items-center justify-center bg-primary-foreground rounded-full"
+          </Link>
+
+          <Link
+            to={"#"}
+            className="group hover:bg-primary transition-all duration-300 rounded-full w-10 h-10 bg-primary/10 flex justify-center items-center"
           >
             <svg
               width="20"
@@ -402,44 +694,50 @@ function Home() {
                 stroke="#8B5CF6"
                 stroke-width="1.6"
                 stroke-linejoin="round"
+                className="group-hover:stroke-white transition-all duration-300"
               />
             </svg>
-          </a>
-          <a
-            href="/"
-            className="size-10 flex items-center justify-center bg-primary-foreground rounded-full"
+          </Link>
+
+          <Link
+            to={"#"}
+            className="group hover:bg-primary transition-all duration-300 rounded-full w-10 h-10 bg-primary/10 flex justify-center items-center"
           >
             <svg
-              width="19"
+              width="18"
               height="18"
-              viewBox="0 0 19 18"
+              viewBox="0 0 18 18"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                d="M9.75 0C14.7207 0 18.75 4.0293 18.75 9C18.75 13.9707 14.7207 18 9.75 18C8.21816 18.0022 6.71132 17.6118 5.37331 16.866L5.09881 16.7058L2.37001 17.5086C2.22151 17.5523 2.0643 17.5575 1.91327 17.5234C1.76225 17.4894 1.62241 17.4174 1.50703 17.3142C1.39165 17.2109 1.30454 17.08 1.25396 16.9337C1.20338 16.7873 1.191 16.6305 1.21801 16.4781L1.24141 16.38L2.04421 13.6512C1.19547 12.2484 0.747827 10.6396 0.750008 9C0.750008 4.0293 4.77931 0 9.75 0ZM9.75 1.8C8.46087 1.79977 7.19532 2.14565 6.0855 2.80153C4.97569 3.45741 4.06233 4.39924 3.44079 5.52864C2.81926 6.65805 2.51235 7.93362 2.55213 9.22214C2.5919 10.5107 2.9769 11.7649 3.66691 12.8538C3.84511 13.1346 3.92161 13.4802 3.86131 13.8231L3.82621 13.9698L3.42931 15.3207L4.78021 14.9238C5.16991 14.8086 5.5749 14.8788 5.8962 15.0831C6.8397 15.6805 7.90922 16.0503 9.02023 16.1631C10.1312 16.276 11.2533 16.1289 12.2976 15.7334C13.342 15.338 14.2801 14.705 15.0377 13.8845C15.7953 13.0641 16.3516 12.0787 16.6628 11.0062C16.974 9.93369 17.0314 8.80351 16.8305 7.70499C16.6297 6.60648 16.176 5.56974 15.5055 4.67674C14.835 3.78373 13.9659 3.05895 12.967 2.55967C11.9681 2.0604 10.8667 1.80032 9.75 1.8ZM7.1418 4.6656C7.24145 4.62245 7.35061 4.60598 7.45854 4.61782C7.56648 4.62965 7.66948 4.66938 7.7574 4.7331C8.211 5.0643 8.571 5.5089 8.8806 5.9427L9.1749 6.3693L9.3126 6.5718C9.39205 6.68797 9.43105 6.82706 9.42357 6.96761C9.41608 7.10815 9.36254 7.24232 9.2712 7.3494L9.2037 7.4178L8.3721 8.0352C8.33208 8.06418 8.30391 8.10668 8.29283 8.15483C8.28174 8.20299 8.28848 8.25353 8.3118 8.2971C8.5008 8.6391 8.8347 9.14939 9.2181 9.53279C9.6024 9.91619 10.1361 10.2726 10.5015 10.4823C10.5807 10.5273 10.6761 10.5129 10.7409 10.4544L10.7751 10.4139L11.316 9.59039C11.4153 9.45811 11.5619 9.36942 11.7252 9.3429C11.8885 9.31639 12.0557 9.35413 12.1917 9.44819L12.6804 9.78929C13.1664 10.1358 13.6335 10.5084 14.0034 10.9809C14.0722 11.0695 14.1159 11.175 14.13 11.2863C14.1441 11.3976 14.128 11.5106 14.0835 11.6136C13.7271 12.4452 12.8244 13.1535 11.8866 13.1193L11.7435 13.1103L11.5716 13.0941C11.5392 13.0902 11.5068 13.086 11.4744 13.0815L11.2602 13.0455C10.4286 12.8889 9.0957 12.4173 7.7142 11.0367C6.3336 9.65519 5.86201 8.3223 5.70541 7.4907L5.66941 7.2765L5.64691 7.0893L5.63521 6.9318C5.63378 6.90931 5.63258 6.88681 5.63161 6.8643C5.5974 5.9247 6.30931 5.022 7.1418 4.6656Z"
+                d="M9 0C13.9707 0 18 4.0293 18 9C18 13.9707 13.9707 18 9 18C7.46816 18.0022 5.96132 17.6118 4.62331 16.866L4.34881 16.7058L1.62001 17.5086C1.47151 17.5523 1.3143 17.5575 1.16327 17.5234C1.01225 17.4894 0.872414 17.4174 0.757031 17.3142C0.641648 17.2109 0.554537 17.08 0.503956 16.9337C0.453376 16.7873 0.441002 16.6305 0.468008 16.4781L0.491408 16.38L1.29421 13.6512C0.445471 12.2484 -0.00217264 10.6396 7.92858e-06 9C7.92858e-06 4.0293 4.02931 0 9 0ZM9 1.8C7.71087 1.79977 6.44532 2.14565 5.3355 2.80153C4.22569 3.45741 3.31233 4.39924 2.69079 5.52864C2.06926 6.65805 1.76235 7.93362 1.80213 9.22214C1.8419 10.5107 2.2269 11.7649 2.91691 12.8538C3.09511 13.1346 3.17161 13.4802 3.11131 13.8231L3.07621 13.9698L2.67931 15.3207L4.03021 14.9238C4.41991 14.8086 4.8249 14.8788 5.1462 15.0831C6.0897 15.6805 7.15922 16.0503 8.27023 16.1631C9.38124 16.276 10.5033 16.1289 11.5476 15.7334C12.592 15.338 13.5301 14.705 14.2877 13.8845C15.0453 13.0641 15.6016 12.0787 15.9128 11.0062C16.224 9.93369 16.2814 8.80351 16.0805 7.70499C15.8797 6.60648 15.426 5.56974 14.7555 4.67674C14.085 3.78373 13.2159 3.05895 12.217 2.55967C11.2181 2.0604 10.1167 1.80032 9 1.8ZM6.3918 4.6656C6.49145 4.62245 6.60061 4.60598 6.70854 4.61782C6.81648 4.62965 6.91948 4.66938 7.0074 4.7331C7.461 5.0643 7.821 5.5089 8.1306 5.9427L8.4249 6.3693L8.5626 6.5718C8.64205 6.68797 8.68105 6.82706 8.67357 6.96761C8.66608 7.10815 8.61254 7.24232 8.5212 7.3494L8.4537 7.4178L7.6221 8.0352C7.58208 8.06418 7.55391 8.10668 7.54283 8.15483C7.53174 8.20299 7.53848 8.25353 7.5618 8.2971C7.7508 8.6391 8.0847 9.14939 8.4681 9.53279C8.8524 9.91619 9.3861 10.2726 9.7515 10.4823C9.8307 10.5273 9.9261 10.5129 9.9909 10.4544L10.0251 10.4139L10.566 9.59039C10.6653 9.45811 10.8119 9.36942 10.9752 9.3429C11.1385 9.31639 11.3057 9.35413 11.4417 9.44819L11.9304 9.78929C12.4164 10.1358 12.8835 10.5084 13.2534 10.9809C13.3222 11.0695 13.3659 11.175 13.38 11.2863C13.3941 11.3976 13.378 11.5106 13.3335 11.6136C12.9771 12.4452 12.0744 13.1535 11.1366 13.1193L10.9935 13.1103L10.8216 13.0941C10.7892 13.0902 10.7568 13.086 10.7244 13.0815L10.5102 13.0455C9.6786 12.8889 8.3457 12.4173 6.9642 11.0367C5.5836 9.65519 5.11201 8.3223 4.95541 7.4907L4.91941 7.2765L4.89691 7.0893L4.88521 6.9318C4.88378 6.90931 4.88258 6.88681 4.88161 6.8643C4.8474 5.9247 5.55931 5.022 6.3918 4.6656Z"
                 fill="#8B5CF6"
+                className="group-hover:fill-white transition-all duration-300"
               />
             </svg>
-          </a>
-          <a
-            href="/"
-            className="size-10 flex items-center justify-center bg-primary-foreground rounded-full"
+          </Link>
+
+          <Link
+            to={"#"}
+            className="group hover:bg-primary transition-all duration-300 rounded-full w-10 h-10 bg-primary/10 flex justify-center items-center"
           >
             <svg
-              width="21"
+              width="20"
               height="16"
-              viewBox="0 0 21 16"
+              viewBox="0 0 20 16"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
+              className="text-center"
             >
               <path
-                d="M20.5 2C20.5 0.9 19.6 0 18.5 0H2.5C1.4 0 0.5 0.9 0.5 2V14C0.5 15.1 1.4 16 2.5 16H18.5C19.6 16 20.5 15.1 20.5 14V2ZM18.5 2L10.5 7L2.5 2H18.5ZM18.5 14H2.5V4L10.5 9L18.5 4V14Z"
+                d="M20 2C20 0.9 19.1 0 18 0H2C0.9 0 0 0.9 0 2V14C0 15.1 0.9 16 2 16H18C19.1 16 20 15.1 20 14V2ZM18 2L10 7L2 2H18ZM18 14H2V4L10 9L18 4V14Z"
                 fill="#8B5CF6"
+                className="group-hover:fill-white transition-all duration-300"
               />
             </svg>
-          </a>
-        </div>
+          </Link>
+        </AnimatedGroup>
       </section>
     </div>
   );

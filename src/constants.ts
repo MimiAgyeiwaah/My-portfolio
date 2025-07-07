@@ -28,7 +28,7 @@ export const testimonial = [
 ];
 
 export const mockups = [
-    '/assets/mockup1.png', '/assets/mockup2.png', '/assets/mockup3.png', '/assets/mockup4.png', '/assets/mockup5.png', '/assets/mockup6.png'
+    '/assets/mockup1.svg', '/assets/mockup2.svg', '/assets/mockup3.svg', '/assets/mockup4.svg', '/assets/mockup5.svg', '/assets/mockup6.svg'
 ]
 export const works = [
     {

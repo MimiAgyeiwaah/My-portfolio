@@ -1,10 +1,10 @@
-import { log } from 'console'
+
 import { works } from '../constants'
 import { useParams } from 'react-router-dom'
 
 function ProjectDetail() {
     const {id} = useParams()
-    const project = works.find((work:any) => `${work.id}` === id) 
+    const project = works.find((work: any) => `${work.id}` === id) 
     console.log(project?.image, 'img');
     
     return (
@@ -28,7 +28,7 @@ function ProjectDetail() {
                         </div>
                     </div>
                 </div>
-                <div className="w-full flex-1 overflow-y-auto h-full flex flex-col items-start gap-4">
+                <div className="w-full flex-1 overflow-y-auto h-full flex flex-col items-start gap-4 scrollbar-hidden scroll-smooth">
                     <img src={project?.image} alt={project?.title} className="w-full rounded-3xl h-[475px] object-cover mb-[2rem]" />
 
                     {

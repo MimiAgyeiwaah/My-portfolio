@@ -1,5 +1,5 @@
 // import { profilePicture } from '../../public/assets'
-import { ArrowUpRight, MoveUpRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import HowICraft from "../components/how-i-craft";
 import { hardSkills } from "../constants";
 import { useEffect, useRef, useState } from "react";
@@ -89,12 +89,12 @@ function About() {
     {
       title: "UI/UX Design",
       description: "10+ Projects",
-      link: "/projects/uiux",
+      link: "/projects/1",
     },
     {
       title: "Graphic Design",
       description: "10+ Projects",
-      link: "/projects/graphic",
+      link: "/projects/6",
     },
   ];
   const scrollToSection = (sectionId: string) => {
@@ -203,7 +203,7 @@ function About() {
         <div
           ref={contentRef}
           id="about-content-scroll"
-          className="w-full flex-1 overflow-y-auto h-full flex flex-col items-start gap-8 transition-all duration-300"
+          className="w-full flex-1 overflow-y-auto h-full flex flex-col items-start gap-8 transition-all duration-300 scroll-smooth scrollbar-hidden"
         >
           <section className="w-full flex min-[470px]:flex-row flex-col items-center gap-5">
             <div className="w-full min-[400px]:w-[319px] h-[180px] drop-shadow-lg shadow-primary/30 rounded-3xl relative overflow-hidden flex items-center justify-center">
@@ -320,7 +320,7 @@ function About() {
           </div>
           <HowICraft howICraft={howICraft} />
 
-          {/* Services Section (placeholder) */}
+          {/* Services Section  */}
           <br />
           <div
             ref={sectionRefs.services}
@@ -346,7 +346,7 @@ function About() {
             ))}
           </section>
 
-          {/* Contact Section (placeholder) */}
+          {/* Contact Section  */}
           <br />
           <section className="my-8">
             <div
@@ -365,14 +365,14 @@ function About() {
 
               <Link
                 to="/contact"
-                className=" group flex mt-12 hover:bg-primary transition-all duration-300 items-end justify-between p-1 rounded-md w-40 h-14 gap-1  bg-[#21212114] hover:text-white"
+                className=" group flex mt-12 hover:bg-primary  items-end justify-between p-1 rounded-md w-40 h-16 gap-1  bg-[#21212114] hover:text-white"
               >
                 <span className="text-gray-500 group-hover:text-white transition-all duration-300 p-1">
                   Let’s Talk
                 </span>
                 <div className="h-full flex flex-col items-end">
                   <span className="bg-black/70 group-hover:bg-white transition-all duration-300 rounded-full p-0.5 m-1">
-                    <MoveUpRight className="w-2.5 h-2.5 text-sm text-gray-100 group-hover:text-black" />
+                    <ArrowRight className="size-4 text-sm text-gray-100 group-hover:text-black -rotate-45" />
                   </span>
                 </div>
               </Link>
