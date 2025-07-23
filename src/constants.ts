@@ -272,3 +272,13 @@ export const hardSkills = [
     "JavaScript",
     "Accessibility",
 ];
+export const softSkills = [
+    "Communication",
+    "Creativity",
+    "Collaboration",
+    "Empathy",
+    "Adaptability",
+    "Attention to Detail",
+    "Time Management",
+    "Leadership",
+];

@@ -1,7 +1,7 @@
 // import { profilePicture } from '../../public/assets'
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import HowICraft from "../components/how-i-craft";
-import { hardSkills } from "../constants";
+import { hardSkills, softSkills } from "../constants";
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import ScrollToTop from "../components/scroll-to-top";
@@ -269,7 +269,7 @@ function About() {
             <hr className="w-3/5 border-2 border-primary" />
           </div>
           <section className="w-full flex items-center gap-5 flex-wrap">
-            {hardSkills.slice(6).map((skill, idx) => (
+            {softSkills.map((skill, idx) => (
               <div
                 key={idx}
                 className="p-[1px] relative cursor-pointer rounded-[3rem] bg-gradient-to-r from-primary via-[#C6445D] via-[#F9A768] via-[#C6445D] to-primary"
