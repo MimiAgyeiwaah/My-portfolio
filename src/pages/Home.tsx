@@ -303,7 +303,7 @@ function Home() {
           }}
           className="w-full flex flex-wrap items-center justify-center gap-4"
         >
-          <Button className="min-[450px]:w-auto min-[320px]:w-[300px] hover:bg-primary/80 transition-all duration-300 cursor-pointer w-[calc(100dvw-20px)] bg-primary text-white min-[450px]:h-12 h-10 font-semibold min-[450px]:text-base text-sm">
+          <Button className="min-[450px]:w-auto min-[320px]:w-[300px] hover:bg-primary/80 transition-all duration-300 cursor-pointer w-[calc(100dvw-20px)] bg-[rgba(139,92,246,1)] text-white min-[450px]:h-12 h-10 font-semibold min-[450px]:text-base text-sm">
             View My Work
             <ArrowRight />
           </Button>
