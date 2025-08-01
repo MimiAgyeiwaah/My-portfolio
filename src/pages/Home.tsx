@@ -119,7 +119,7 @@ function Home() {
   const rawYAboutTextHeader = useTransform(
     aboutTextHeaderProgress,
     [0, 1],
-    [10, -50]
+    [10, -20]
   );
 
   // Recent Works Header Transform Animations
@@ -260,7 +260,7 @@ function Home() {
   return (
     <div
       ref={mainContentRef}
-      className="w-full min-h-full space-y-16 md:space-y-24 flex flex-col items-center font-montserrat"
+      className="w-full min-h-full space-y-16 md:space-y-24 flex flex-col items-center font-montserrat bg-background"
     >
       <section className="w-full space-y-14 md:space-y-18 gap-24 lg:gap-32 flex flex-col items-center justify-between">
         <motion.div
@@ -314,7 +314,11 @@ function Home() {
             Download Resume
             <Download />
           </Button>
-          <Button variant={"link"} asChild className="hover:no-underline p-5">
+          <Button
+            variant={"link"}
+            asChild
+            className="hover:no-underline px-10 py-6 font-semibold min-[450px]:text-base text-sm"
+          >
             <Link
               to="/"
               className="text-sm font-semibold min-[650px]:flex hover:bg-primary/10 hover:text-primary hover:no-underline transition-all duration-300 cursor-pointer "
@@ -609,7 +613,7 @@ function Home() {
         {/* <div > */}
         <AnimatedGroup
           // className='grid h-full grid-cols-2 gap-8 p-12 md:grid-cols-3 lg:grid-cols-4'
-          className="flex items-start justify-center w-full gap-1 space-y-12 space-x-14 mt-5 "
+          className="flex items-start justify-center w-full gap-1 space-y-12 md:space-x-14 space-x-8 mt-5 "
           variants={{
             container: {
               visible: {

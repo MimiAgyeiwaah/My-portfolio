@@ -83,7 +83,8 @@ export const works = [
     {
         id: 2,
         image: '/assets/mockup2.svg',
-        title: "DMS Department Management System",
+        title: "DMS",
+        subTitle: "Department Management System",
         service: ['UI/UX Design - Web Application'],
         role: 'UI/UX Design Lead',
         description: [

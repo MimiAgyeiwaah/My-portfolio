@@ -5,6 +5,7 @@ import { hardSkills, softSkills } from "../constants";
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import ScrollToTop from "../components/scroll-to-top";
+import { Separator } from "../components/ui/separator";
 
 function About() {
   const [activeSection, setActiveSection] = useState<string>("journey");
@@ -36,24 +37,46 @@ function About() {
     },
     {
       id: 4,
+      image: "/assets/Toolkit/Sketch.svg",
+      name: "Sketch",
+    },
+    {
+      id: 5,
+      image: "/assets/Toolkit/Mobbin.svg",
+      name: "Mobbin",
+    },
+    {
+      id: 6,
       image: "/assets/Toolkit/Notion.svg",
       name: "Notion",
     },
     {
-      id: 5,
+      id: 7,
       image: "/assets/Toolkit/Slack.svg",
       name: "Slack",
     },
     {
-      id: 6,
+      id: 8,
+      image: "/assets/Toolkit/Trello.svg",
+      name: "Trello",
+    },
+    {
+      id: 9,
       image: "/assets/Toolkit/HTML5.svg",
       name: "HTML5",
     },
     {
-      id: 7,
+      id: 9,
       image: "/assets/Toolkit/CSS3.svg",
       name: "CSS3",
     },
+    {
+      id: 10,
+      image: "/assets/Toolkit/JavaScript.svg",
+      name: "JavaScript",
+    },
+
+
   ];
 
   const howICraft = [
@@ -146,10 +169,10 @@ function About() {
   }, [activeSection, sectionRefs]);
 
   return (
-    <div className="w-full relative h-[calc(100dvh-100px)] flex flex-col px-[0.5rem] sm:px-[1rem] md:px-[5rem] xl:px-[10rem] bg-white">
-      <section className="w-full h-full flex min-[1001px]:flex-row flex-col gap-[2rem] min-[1714px]:gap-[4rem] items-start px-[1rem] min-[1001px]:pt-[4rem] min-[1714px]:px-[10rem]">
-        <div className="min-w-full min-[1001px]:min-w-[400px] min-[1714px]:min-w-[500px] min-[700px]:gap-[2rem] min-[1001px]:min-h-[400px] flex flex-col items-start justify-between">
-          <ul className="flex sm:flex-col sm:w-auto w-[90dvw] overflow-x-auto gap-6 sm:gap-4 sm:text-black text-gray-500 text-nowrap">
+    <div className="w-full relative h-[calc(100dvh-100px)] flex flex-col px-[0.5rem] sm:px-[1rem] md:px-[5rem] xl:px-[10rem] bg-background">
+      <section className="w-full h-full flex min-[1001px]:flex-row flex-col space-x-10 gap-[2rem] min-[1714px]:gap-[4rem] items-start px-[1rem] min-[1001px]:pt-[4rem] min-[1714px]:px-[10rem]">
+        <div className="min-w-full min-[1001px]:min-w-[300px] min-[1714px]:min-w-[400px] min-[700px]:gap-[2rem] min-[1001px]:min-h-[400px] flex flex-col items-start justify-between">
+          <ul className="flex sm:flex-col sm:w-auto w-[90dvw] overflow-x-auto gap-6 sm:gap-4 sm:text-black text-gray-500 dark:text-white text-foreground text-nowrap">
             <li
               onClick={() => scrollToSection("journey")}
               className={`cursor-pointer transition-all duration-300 hover:text-primary hover:font-semibold ${
@@ -200,6 +223,7 @@ function About() {
             </li>
           </ul>
         </div>
+        <Separator orientation="vertical" className="bg-gray-100" />
         <div
           ref={contentRef}
           id="about-content-scroll"
@@ -213,11 +237,11 @@ function About() {
                 className="w-full object-contain absolute top-0 left-0"
               />
             </div>
-            <span className="text-[40px] font-[200] w-[200px] leading-[50px] min-[470px]:text-left text-center">
+            <span className="text-[40px] font-[300] w-[200px] leading-[50px] min-[470px]:text-left text-center">
               Miriam <span className="font-[600]">Agyeiwaah Asante</span>
             </span>
           </section>
-          <div ref={sectionRefs.journey}>
+          <div ref={sectionRefs.journey} className="space-y-6">
             <p>
               My journey as a UI/UX & Graphic Designer started with a passion
               for creativity and problem-solving. Guided into the tech space, I
@@ -238,6 +262,11 @@ function About() {
               dreams.
             </p>
           </div>
+
+          <Separator
+            orientation="horizontal"
+            className="bg-gray-100 mt-12 mb-5 "
+          />
 
           {/* What I Bring to the Table .... */}
           <br />
@@ -282,6 +311,11 @@ function About() {
             ))}
           </section>
 
+          <Separator
+            orientation="horizontal"
+            className="bg-gray-100 mt-12 mb-5 "
+          />
+
           {/* Toolkit */}
           <br />
           <div
@@ -289,25 +323,30 @@ function About() {
             className="flex flex-col items-start gap-1"
           >
             <b className="text-[28px]">My Creative Toolkit</b>
-            <hr className="w-3/5 border-2 border-primary" />
+            <hr className="w-3/5 border-2 mb-4 border-primary" />
           </div>
           <section className="w-full flex items-center gap-8 flex-wrap">
             {toolkit.map((tool, index) => (
               <div
                 key={tool.id}
-                className="group hover:bg-primary/10 relative w-24 h-24 flex items-center justify-center border-[.5px] border-black p-0 m-0 rounded-lg overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-primary-foreground hover:bg-primary-foreground/20 cursor-pointer"
+                className="group hover:bg-primary/10 relative w-24 h-24 flex items-center justify-center border-[.5px] border-gray-300 p-0 m-0 rounded-lg overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-primary-foreground hover:bg-primary-foreground/20 cursor-pointer"
               >
                 <img
                   src={tool.image}
                   alt={`${index}`}
-                  className="object-cover w-[calc(100%-20px)] h-[calc(100%-20px)]  transition-transform duration-300 group-hover:scale-70"
+                  className="object-cover transition-transform duration-300 group-hover:scale-70"
                 />
-                <p className="absolute bottom-0 left-0 w-full  text-sm text-gray-700 text-center py-1 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                <p className="absolute bottom-0 left-0 w-full  text-sm text-gray-700 text-center py-1 transform translate-y-full group-hover:translate-y-1 transition-transform duration-300">
                   {tool.name}
                 </p>
               </div>
             ))}
           </section>
+
+          <Separator
+            orientation="horizontal"
+            className="bg-gray-100 mt-12 mb-5 "
+          />
 
           {/* How I Craft Experiences */}
           <br />
@@ -320,11 +359,16 @@ function About() {
           </div>
           <HowICraft howICraft={howICraft} />
 
+          <Separator
+            orientation="horizontal"
+            className="bg-gray-100 mt-4 mb-2 "
+          />
+
           {/* Services Section  */}
           <br />
           <div
             ref={sectionRefs.services}
-            className="flex flex-col items-start gap-1 my-6"
+            className="flex flex-col items-start gap-1 "
           >
             <b className="text-[28px]">What I Can Do for You</b>
             <hr className="w-2/5 border-2 border-primary" />
@@ -346,12 +390,17 @@ function About() {
             ))}
           </section>
 
+          <Separator
+            orientation="horizontal"
+            className="bg-gray-100 mt-12 mb-5 "
+          />
+
           {/* Contact Section  */}
           <br />
-          <section className="my-8">
+          <section className="">
             <div
               ref={sectionRefs.contact}
-              className="flex flex-col items-start gap-1 my-8"
+              className="flex flex-col items-start gap-1 mb-8"
             >
               <b className="text-[28px]">Get In Touch</b>
               <hr className="w-2/12 border-2 border-primary" />
@@ -379,7 +428,7 @@ function About() {
             </section>
 
             {/* social links */}
-            <div className="flex items-center justify-center w-full gap-1 space-y-2 space-x-14 mt-30">
+            <div className="flex items-center justify-start w-full gap-1 space-y-2 space-x-14 mt-30">
               <Link
                 to={"#"}
                 className="group hover:bg-primary transition-all duration-300 rounded-full w-10 h-10 bg-primary/10 flex justify-center items-center"

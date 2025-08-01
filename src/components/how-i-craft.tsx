@@ -14,7 +14,7 @@ function HowICraft({ howICraft }: { howICraft: HowICraftItem[] }) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section className="w-full md:py-8">
+    <section className="w-full md:py-6">
       <div className="p-8 pb-12 w-full">
 
         <div className="space-y-4 w-full">
