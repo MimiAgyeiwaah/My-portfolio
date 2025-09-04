@@ -12,6 +12,7 @@ import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import { AnimatedGroup } from "../components/ui/animated-group";
+import { cn } from "../lib/utils";
 
 function Home() {
   const [activeTestimonial, setActiveTestimonial] = React.useState(0);
@@ -309,7 +310,9 @@ function Home() {
           </Button>
           <Button
             variant={"outline"}
-            className="min-[450px]:w-auto hover:bg-primary/10 hover:text-primary transition-all duration-300 cursor-pointer min-[320px]:w-[300px] w-[calc(100dvw-20px)] text-primary border border-primary min-[450px]:h-12 h-10 font-semibold min-[450px]:text-base text-sm"
+            className={cn(
+              "min-[450px]:w-auto hover:bg-primary/10 hover:text-primary transition-all duration-300 cursor-pointer min-[320px]:w-[300px] w-[calc(100dvw-20px)] text-primary border border-primary dark:border-primary min-[450px]:h-12 h-10 font-semibold min-[450px]:text-base text-sm"
+            )}
           >
             Download Resume
             <Download />
@@ -321,7 +324,7 @@ function Home() {
           >
             <Link
               to="/"
-              className="text-sm font-semibold min-[650px]:flex hover:bg-primary/10 hover:text-primary hover:no-underline transition-all duration-300 cursor-pointer "
+              className="text-sm font-semibold min-[650px]:flex hover:bg-primary/10 hover:text-primary hover:no-underline transition-all duration-300 cursor-pointer dark:text-secondary-foreground hover:dark:text-primary text-primary"
             >
               Contact Me
             </Link>
@@ -459,7 +462,7 @@ function Home() {
             Client Testimonials
           </h1>
           <hr className="w-[100px] border-2 border-primary" />
-          <p className="md:w-[600px] text-center text-gray-700 text-sm sm:text-base md:text-[18px] mt-3">
+          <p className="md:w-[600px] text-center text-gray-700 dark:text-secondary-foreground text-sm sm:text-base md:text-[18px] mt-3">
             Here's what clients and collaborators have to say about working with
             me.
           </p>
@@ -472,12 +475,12 @@ function Home() {
             delay: 5.0,
             ease: "circIn",
           }}
-          className="p-6 pt-0 flex flex-col sm:gap-4 rounded-2xl shadow-lg bg-white lg:w-[800px] min-h-[247px] md:text-left text-center"
+          className="p-6 pt-0 flex flex-col sm:gap-4 rounded-2xl shadow-lg bg-white dark:bg-secondary dark:text-secondary-foreground lg:w-[800px] min-h-[247px] md:text-left text-center"
         >
           <section className="w-full flex md:flex-row flex-col items-center justify-between md:py-0 py-6">
             <aside className="flex md:flex-row flex-col items-center gap-2">
               <div className="w-[50px] h-[50px] rounded-full bg-gray-200 relative flex items-center justify-center">
-                <div className="size-full rounded-full bg-primary animate-ping absolute" />
+                <div className="size-full rounded-full bg-primary  animate-ping absolute" />
                 <img
                   src={testimonial[activeTestimonial].image}
                   alt="profilepicture"
@@ -511,7 +514,7 @@ function Home() {
               />
             </svg>
           </section>
-          <p className="text-sm sm:text-base md:text-[18px] text-gray-700">
+          <p className="text-sm sm:text-base md:text-[18px] text-gray-700 dark:text-secondary-foreground">
             {testimonial[activeTestimonial].description}
           </p>
         </motion.div>
@@ -582,7 +585,7 @@ function Home() {
           <h1 className="font-semibold text-[30px] sm:text-[40px]">
             Get In Touch
           </h1>
-          <hr className="w-[80px] border-2 border-primary" />
+          <hr className="w-[80px] border-2 border-primary dark:border-primary" />
           <p className="sm:w-[600px] text-center sm:text-base text-sm ">
             Let's create something amazing together. Reach out for
             collaborations, question, or just to say hello.{" "}
@@ -598,14 +601,14 @@ function Home() {
             stiffness: 100,
           }}
           href="/contact"
-          className=" group flex mt-12 hover:bg-primary  items-end justify-between p-1 rounded-md w-40 h-16 gap-1  bg-[#21212114] hover:text-white"
+          className=" group flex mt-12 hover:bg-primary  items-end justify-between p-1 rounded-md w-40 h-16 gap-1  bg-[#21212114] dark:bg-secondary hover:text-white"
         >
           <span className="text-gray-500 group-hover:text-white transition-all duration-300 p-1">
             Let’s Talk
           </span>
           <div className="h-full flex flex-col items-end">
             <span className="bg-black/70 group-hover:bg-white transition-all duration-300 rounded-full p-0.5 m-1">
-              <ArrowRight className="size-4 text-sm text-gray-100 group-hover:text-black -rotate-45" />
+              <ArrowRight className="size-4 text-sm  text-gray-200 group-hover:text-black group-hover:dark:text-gray-400 -rotate-45" />
             </span>
           </div>
         </motion.a>

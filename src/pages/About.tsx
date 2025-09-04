@@ -223,7 +223,10 @@ function About() {
             </li>
           </ul>
         </div>
-        <Separator orientation="vertical" className="bg-gray-100" />
+        <Separator
+          orientation="vertical"
+          className="bg-gray-100 dark:bg-secondary-foreground"
+        />
         <div
           ref={contentRef}
           id="about-content-scroll"
@@ -265,7 +268,7 @@ function About() {
 
           <Separator
             orientation="horizontal"
-            className="bg-gray-100 mt-12 mb-5 "
+            className="bg-gray-100 dark:bg-secondary-foreground  mt-12 mb-5 "
           />
 
           {/* What I Bring to the Table .... */}
@@ -281,9 +284,9 @@ function About() {
             {hardSkills.map((skill, idx) => (
               <div
                 key={idx}
-                className="p-[1px] relative cursor-pointer rounded-[3rem] bg-gradient-to-r from-primary via-[#C6445D] via-[#F9A768] via-[#C6445D] to-primary"
+                className="p-[1px] relative cursor-pointer rounded-[3rem] bg-gradient-to-r from-primary via-[#C6445D] via-[#F9A768] via-[#C6445D] to-primary dark:from-primary dark:via-[#C6445D] dark:via-[#F9A768] dark:via-[#C6445D] dark:to-primary "
               >
-                <div className="bg-white  rounded-[3rem] px-4 py-2 flex items-center justify-center sm:text-base text-sm">
+                <div className="bg-white dark:bg-background rounded-[3rem] px-4 py-2 flex items-center justify-center sm:text-base text-sm">
                   {skill}
                 </div>
                 <div className="w-full h-full hover:bg-primary/10 absolute top-0 left-0 rounded-[3rem]" />
@@ -303,7 +306,7 @@ function About() {
                 key={idx}
                 className="p-[1px] relative cursor-pointer rounded-[3rem] bg-gradient-to-r from-primary via-[#C6445D] via-[#F9A768] via-[#C6445D] to-primary"
               >
-                <div className="bg-white  rounded-[3rem] px-4 py-2 flex items-center justify-center sm:text-base text-sm">
+                <div className="bg-white dark:bg-background rounded-[3rem] px-4 py-2 flex items-center justify-center sm:text-base text-sm">
                   {skill}
                 </div>
                 <div className="w-full h-full hover:bg-primary/10 absolute top-0 left-0 rounded-[3rem]" />
@@ -313,7 +316,7 @@ function About() {
 
           <Separator
             orientation="horizontal"
-            className="bg-gray-100 mt-12 mb-5 "
+            className="bg-gray-100 dark:bg-secondary-foreground  mt-12 mb-5 "
           />
 
           {/* Toolkit */}
@@ -345,7 +348,7 @@ function About() {
 
           <Separator
             orientation="horizontal"
-            className="bg-gray-100 mt-12 mb-5 "
+            className="bg-gray-100 dark:bg-secondary-foreground  mt-12 mb-5 "
           />
 
           {/* How I Craft Experiences */}
@@ -361,7 +364,7 @@ function About() {
 
           <Separator
             orientation="horizontal"
-            className="bg-gray-100 mt-4 mb-2 "
+            className="bg-gray-100 dark:bg-secondary-foreground  mt-4 mb-2 "
           />
 
           {/* Services Section  */}
@@ -392,7 +395,7 @@ function About() {
 
           <Separator
             orientation="horizontal"
-            className="bg-gray-100 mt-12 mb-5 "
+            className="bg-gray-100 dark:bg-secondary-foreground mt-12 mb-5 "
           />
 
           {/* Contact Section  */}
@@ -414,14 +417,14 @@ function About() {
 
               <Link
                 to="/contact"
-                className=" group flex mt-12 hover:bg-primary  items-end justify-between p-1 rounded-md w-40 h-16 gap-1  bg-[#21212114] hover:text-white"
+                className=" group flex mt-12 hover:bg-primary  items-end justify-between p-1 rounded-md w-40 h-16 gap-1  bg-[#21212114] dark:bg-secondary hover:text-white"
               >
                 <span className="text-gray-500 group-hover:text-white transition-all duration-300 p-1">
                   Let’s Talk
                 </span>
                 <div className="h-full flex flex-col items-end">
-                  <span className="bg-black/70 group-hover:bg-white transition-all duration-300 rounded-full p-0.5 m-1">
-                    <ArrowRight className="size-4 text-sm text-gray-100 group-hover:text-black -rotate-45" />
+                  <span className="bg-black/70 dark:bg-black/30 group-hover:bg-white transition-all duration-300 rounded-full p-0.5 m-1">
+                    <ArrowRight className="size-4 text-sm text-gray-200 group-hover:text-black group-hover:dark:text-gray-400 -rotate-45" />
                   </span>
                 </div>
               </Link>
