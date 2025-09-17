@@ -1,9 +1,9 @@
-import { Separator } from "../components/ui/separator";
 import { works } from "../constants";
 import { useParams } from "react-router-dom";
 
 function ProjectDetail() {
   const { id } = useParams();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const project = works.find((work: any) => `${work.id}` === id);
   console.log(project?.image, "img");
 
@@ -70,7 +70,7 @@ function ProjectDetail() {
                         className="w-full flex flex-col gap-[0.5rem]"
                       >
                         <aside className="flex flex-col gap-[0.5rem]">
-                          {subContent.title && (
+                          {"title" in subContent && subContent.title && (
                             <div className="flex items-center gap-2">
                               <svg
                                 width="17"
@@ -88,16 +88,16 @@ function ProjectDetail() {
                                   fill="#212121"
                                 />
                               </svg>
-                              <p className="">{subContent.title}</p>
+                              <p className="">{subContent?.title}</p>
                             </div>
                           )}
 
                           <p className="text-gray-700 font-200">
-                            {subContent.content}
+                            {"content" in subContent ? subContent.content : ""}
                           </p>
                         </aside>
 
-                        {subContent?.image && (
+                        {'image' in subContent && subContent.image && (
                           <img
                             src={subContent?.image}
                             alt="subcontent"
@@ -105,14 +105,14 @@ function ProjectDetail() {
                           />
                         )}
                         <p className="text-gray-700 font-200">
-                          {subContent.content2}
+                          {"content2" in subContent ? subContent.content2 : ""}
                         </p>
                       </div>
                     );
                   })}
                 </section>
                 <div className="w-full flex flex-col gap-[2rem]">
-                  {desc?.images?.map((image, idx) => (
+                  {"images" in desc && desc.images?.map((image, idx) => (
                     <img
                       src={image}
                       alt="otherimages"
