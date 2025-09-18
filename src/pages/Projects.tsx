@@ -69,7 +69,7 @@ function Projects() {
                 className="mb-4"
               >
                 <div
-                  className="group w-full hover:cursor-pointer min-[1261px]:w-[568px] min-[1261px]:h-[434px] overflow-hidden group relative flex items-center justify-center"
+                  className="group w-full hover:cursor-pointer min-[1261px]:w-[568px] min-[1261px]:h-[434px] overflow-hidden relative flex items-center justify-center"
                   key={idx}
                 >
                   <div

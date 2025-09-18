@@ -75,8 +75,6 @@ function About() {
       image: "/assets/Toolkit/JavaScript.svg",
       name: "JavaScript",
     },
-
-
   ];
 
   const howICraft = [
@@ -169,10 +167,10 @@ function About() {
   }, [activeSection, sectionRefs]);
 
   return (
-    <div className="w-full relative h-[calc(100dvh-100px)] flex flex-col px-[0.5rem] sm:px-[1rem] md:px-[5rem] xl:px-[10rem] bg-background">
+    <div className="w-full relative h-[calc(100dvh-100px)] flex flex-col px-[0.5rem] sm:px-[1rem] md:px-[5rem] xl:px-[5rem] bg-background">
       <section className="w-full h-full flex min-[1001px]:flex-row flex-col space-x-10 gap-[2rem] min-[1714px]:gap-[4rem] items-start px-[1rem] min-[1001px]:pt-[4rem] min-[1714px]:px-[10rem]">
         <div className="min-w-full min-[1001px]:min-w-[300px] min-[1714px]:min-w-[400px] min-[700px]:gap-[2rem] min-[1001px]:min-h-[400px] flex flex-col items-start justify-between">
-          <ul className="flex sm:flex-col sm:w-auto w-[90dvw] overflow-x-auto gap-6 sm:gap-4 sm:text-black text-gray-500 dark:text-white text-foreground text-nowrap">
+          <ul className="flex sm:flex-col sm:w-auto w-[90dvw] overflow-x-auto gap-6 sm:gap-4 sm:text-black text-gray-500 dark:text-white text-nowrap">
             <li
               onClick={() => scrollToSection("journey")}
               className={`cursor-pointer transition-all duration-300 hover:text-primary hover:font-semibold ${
@@ -244,7 +242,10 @@ function About() {
               Miriam <span className="font-[600]">Agyeiwaah Asante</span>
             </span>
           </section>
-          <div ref={sectionRefs.journey} className="space-y-6">
+          <div
+            ref={sectionRefs.journey}
+            className="space-y-6 dark:text-gray-500"
+          >
             <p>
               My journey as a UI/UX & Graphic Designer started with a passion
               for creativity and problem-solving. Guided into the tech space, I

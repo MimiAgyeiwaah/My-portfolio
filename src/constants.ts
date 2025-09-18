@@ -28,7 +28,36 @@ export const testimonial = [
 ];
 
 export const mockups = [
-    '/assets/mockup1.svg', '/assets/mockup2.svg', '/assets/mockup3.svg', '/assets/mockup4.svg', '/assets/mockup5.svg', '/assets/mockup6.svg'
+    {
+        id: 1,
+        title: "Item Flipper App",
+        image: '/assets/mockup1.svg',
+    },
+    {
+        id: 2,
+        title: "DMS",
+        image: '/assets/mockup2.svg',
+    },
+    {
+        id: 3,
+        title: "AskPBS Website",
+        image: '/assets/mockup3.svg',
+    },
+    {
+        id: 4,
+        title: "Dumpinn Landing Page",
+        image: '/assets/mockup4.svg',
+    },
+    {
+        id: 5,
+        title: "DCM Payment Platform",
+        image: '/assets/mockup5.svg',   
+    },
+    {
+        id: 6,
+        title: "Graphic Design Mockups",
+        image: '/assets/mockup6.svg',
+    },
 ]
 export const works = [
     {

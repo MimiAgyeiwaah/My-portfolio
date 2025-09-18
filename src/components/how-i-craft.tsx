@@ -16,7 +16,6 @@ function HowICraft({ howICraft }: { howICraft: HowICraftItem[] }) {
   return (
     <section className="w-full md:py-6">
       <div className="p-8 pb-12 w-full">
-
         <div className="space-y-4 w-full">
           {howICraft.map((item, index) => (
             <motion.div
@@ -30,13 +29,15 @@ function HowICraft({ howICraft }: { howICraft: HowICraftItem[] }) {
                 onClick={() => setOpenIndex(openIndex === index ? -1 : index)}
                 className="flex w-full items-center justify-between py-3 text-left cursor-pointer"
               >
-                <span className="text-xl font-normal">{item.question}</span>
+                <span className="text-xl font-normal dark:text-gray-500">
+                  {item.question}
+                </span>
                 <span
                   className={cn(
                     `ml-6 flex-shrink-0 rounded-full bg-white p-1`,
                     {
-                      'bg-primary': openIndex === index,
-                    },
+                      "bg-primary": openIndex === index,
+                    }
                   )}
                 >
                   {openIndex === index ? (
@@ -51,7 +52,7 @@ function HowICraft({ howICraft }: { howICraft: HowICraftItem[] }) {
                 {openIndex === index && (
                   <motion.div
                     initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: 'auto', opacity: 1 }}
+                    animate={{ height: "auto", opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.3 }}
                     className="overflow-hidden"
