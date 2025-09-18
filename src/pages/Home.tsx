@@ -418,33 +418,38 @@ function Home() {
           }}
           className="group w-full hover:cursor-pointer min-[750px]:w-[700px] lg:w-full h-[400px] xl:h-[490px] lg:flex-1 flex items-center relative overflow-hidden rounded-r-2xl sm:rounded-r-[3rem] lg:rounded-r-none rounded-l-2xl sm:rounded-l-[3rem]"
         >
-          {mockups.map((mockup, index) => (
-            <>
-              <div
-                onClick={() => navigate(`/projects/${mockup.id}`)}
-                className="p-3 absolute left-[calc(100%_-_30rem)] z-20 group-hover:bg-white rounded-lg group-hover:flex flex sm:hidden scale-75 group-hover:scale-100 transition-all duration-500 items-end group-hover:text-black group hover:bg-primary hover:text-white min-w-[180px] min-h-[70px] cursor-pointer sm:text-gray-600"
-              >
-                <div className="size-5 rounded-full bg-gray-700 group-hover:bg-primary hover:bg-white text-white group-hover:text-black flex items-center justify-center absolute top-3 right-3">
-                  <ArrowRight className="size-4 -rotate-45 group-hover:text-white" />
+          {mockups.map((mockup, index) => {
+
+          
+          console.log(mockup, 'mockup')
+            return (
+              <>
+                <div
+                  onClick={() => navigate(`/projects/${mockup.id}`)}
+                  className="p-3 absolute left-[calc(100%_-_30rem)] z-20 group-hover:bg-white rounded-lg group-hover:flex flex sm:hidden scale-75 group-hover:scale-100 transition-all duration-500 items-end group-hover:text-black group hover:bg-primary hover:text-white min-w-[180px] min-h-[70px] cursor-pointer sm:text-gray-600"
+                >
+                  <div className="size-5 rounded-full bg-gray-700 group-hover:bg-primary hover:bg-white text-white group-hover:text-black flex items-center justify-center absolute top-3 right-3">
+                    <ArrowRight className="size-4 -rotate-45 group-hover:text-white" />
+                  </div>
+                  <h1 className="group-hover:text-black hover:text-white">
+                    {mockups[activeMockup]?.title}
+                  </h1>
                 </div>
-                <h1 className="group-hover:text-black hover:text-white">
-                  {mockup.title}
-                </h1>
-              </div>
-              <img
-                key={index}
-                src={mockup.image}
-                alt="mock"
-                className={`size-full absolute flex-1 object-cover ${
-                  activeMockup === index
-                    ? ""
-                    : "translate-x-[95%] rounded-l-[3rem]"
-                } ${
-                  activeMockup === index + 1 ? "z-10" : ""
-                } transition-all duration-700`}
-              />
-            </>
-          ))}
+                <img
+                  key={index}
+                  src={mockup.image}
+                  alt="mock"
+                  className={`size-full absolute flex-1 object-cover ${
+                    activeMockup === index
+                      ? ""
+                      : "translate-x-[95%] rounded-l-[3rem]"
+                  } ${
+                    activeMockup === index + 1 ? "z-10" : ""
+                  } transition-all duration-700`}
+                />
+              </>
+            );
+          })}
 
           <div className="flex items-center justify-center absolute right-7">
             <div className="size-12 lg:size-16 bg-primary rounded-full absolute animate-ping" />
