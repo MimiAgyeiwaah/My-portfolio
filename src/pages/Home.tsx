@@ -1,6 +1,7 @@
 // import { logo2, profilePicture } from '../../public/assets'
 import { Button } from "../components/ui/button";
 import { mockups, testimonial } from "../constants";
+
 import {
   ArrowRight,
   ChevronLeft,
@@ -315,12 +316,15 @@ function Home() {
             </Link>
           </Button>
           <Button
+          asChild
             variant={"outline"}
             className={cn(
               "min-[450px]:w-auto hover:bg-primary/10 hover:text-primary transition-all duration-300 cursor-pointer min-[320px]:w-[300px] w-[calc(100dvw-20px)] text-primary border border-primary dark:border-primary min-[450px]:h-12 h-10 font-semibold min-[450px]:text-base text-sm"
             )}
           >
+            <Link to={"/assets/Mimi's Resume.pdf"} download={'portfolio.pdf'} target="_blank">
             Download Resume
+            </Link>
             <Download />
           </Button>
           <Button
