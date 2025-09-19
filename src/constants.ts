@@ -8,13 +8,13 @@ export const testimonial = [
         image: '/assets/akosuaOsei.svg',
     },
     {
-        name: "John Doe",
-        title: "CEO TechWorld",
+        name: "Naa Adjekai",
+        title: "CEO StartUp Convos",
         description: "Miriam's designs transformed our brand identity. Her attention to detail and ability to capture our vision were remarkable. She is a true professional and a pleasure to work with.",
         image: '/assets/profilePicture.svg',
     },
     {
-        name: "Jane Smith",
+        name: "Janet Smith",
         title: "Marketing Manager, CreativeCo",
         description: "Miriam's innovative designs brought our campaigns to life. Her creativity and dedication to delivering quality work are unmatched. Highly recommend her for any design needs.",
         image: '/assets/akosuaOsei.svg',
@@ -248,7 +248,7 @@ export const works = [
         description: [
             {
                 images: [
-                    '/assets/GD1.svg', '/assets/GD2.svg', '/assets/GD3.svg', '/assets/GD4.svg', '/assets/GD5.svg', '/assets/GD6.svg', '/assets/GD7.svg', '/assets/GD8.svg', '/assets/GD9.svg'
+                    '/assets/GD10.svg', '/assets/GD11.svg', '/assets/GD1.svg', '/assets/GD2.svg', '/assets/GD3.svg', '/assets/GD12.svg', '/assets/GD7.svg', '/assets/GD5.svg', '/assets/GD6.svg', '/assets/GD4.svg', '/assets/GD8.svg', '/assets/GD9.svg'
                 ],
             }
         ],
