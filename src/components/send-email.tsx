@@ -113,7 +113,9 @@ export default function SendMessageDialog({ children }: { children: React.ReactN
 
         <DialogFooter className="w-full">
           <Button
-            disabled={isSending}
+            disabled={
+              isSending || !formData.name || !formData.email || !formData.message
+            }
             onClick={handleSend}
             className="w-full text-white bg-primary hover:bg-primary/90"
           >
