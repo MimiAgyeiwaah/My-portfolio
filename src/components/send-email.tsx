@@ -70,7 +70,7 @@ export default function SendMessageDialog({ children }: { children: React.ReactN
         <DialogHeader className="text-center gap-0">
           <DialogTitle className="text-center">Send a Message</DialogTitle>
           <DialogDescription className="mt-2 text-center mx-auto sm:max-w-[90%]">
-            Fill out the form below to send us a message.
+            Fill out the form below to send me a message.
           </DialogDescription>
         </DialogHeader>
 
