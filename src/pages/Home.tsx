@@ -333,18 +333,17 @@ function Home() {
               <Download />
             </Link>
           </Button>
-          <Button
-            variant={"link"}
-            asChild
-            className="hover:no-underline px-10 py-6 font-semibold min-[450px]:text-base text-sm"
-          >
-            <Link
-              to="/"
-              className="text-sm font-semibold min-[650px]:flex hover:bg-primary/10 hover:text-primary hover:no-underline transition-all duration-300 cursor-pointer dark:text-secondary-foreground hover:dark:text-primary text-primary"
+          <SendMessageDialog>
+            <Button
+              variant={"link"}
+              asChild
+              className="hover:no-underline px-10 py-6 font-semibold min-[450px]:text-base text-sm"
             >
-              Contact Me
-            </Link>
-          </Button>
+              <button className="text-sm font-semibold min-[650px]:flex hover:bg-primary/10 hover:text-primary hover:no-underline transition-all duration-300 cursor-pointer dark:text-secondary-foreground hover:dark:text-primary text-primary">
+                Contact Me
+              </button>
+            </Button>
+          </SendMessageDialog>
         </motion.div>
       </section>
 
