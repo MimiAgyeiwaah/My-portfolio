@@ -1,6 +1,7 @@
 // import { logo2, profilePicture } from '../../public/assets'
 import { Button } from "../components/ui/button";
 import { mockups, testimonial } from "../constants";
+// import Resume from "../assets/Mimi's Resume.pdf";
 
 import {
   ArrowRight,
@@ -14,6 +15,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import { AnimatedGroup } from "../components/ui/animated-group";
 import { cn } from "../lib/utils";
+import SendMessageDialog from "@/components/send-email";
 
 function Home() {
   const [activeTestimonial, setActiveTestimonial] = React.useState(0);
@@ -316,16 +318,20 @@ function Home() {
             </Link>
           </Button>
           <Button
-          asChild
+            asChild
             variant={"outline"}
             className={cn(
               "min-[450px]:w-auto hover:bg-primary/10 hover:text-primary transition-all duration-300 cursor-pointer min-[320px]:w-[300px] w-[calc(100dvw-20px)] text-primary border border-primary dark:border-primary min-[450px]:h-12 h-10 font-semibold min-[450px]:text-base text-sm"
             )}
           >
-            <Link to={"/assets/Mimi's Resume.pdf"} download={'portfolio.pdf'} target="_blank">
-            Download Resume
+            <Link
+              to={"/assets/Mimi's Resume.pdf"}
+              // download={"portfolio.pdf"}
+              target="_blank"
+            >
+              Download Resume
+              <Download />
             </Link>
-            <Download />
           </Button>
           <Button
             variant={"link"}
@@ -423,13 +429,13 @@ function Home() {
           className="group w-full hover:cursor-pointer min-[750px]:w-[700px] lg:w-full h-[400px] xl:h-[490px] lg:flex-1 flex items-center relative overflow-hidden rounded-r-2xl sm:rounded-r-[3rem] lg:rounded-r-none rounded-l-2xl sm:rounded-l-[3rem]"
         >
           {mockups.map((mockup, index) => {
-
-          
-          console.log(mockup, 'mockup')
+            console.log(mockup, "mockup");
             return (
               <>
                 <div
-                  onClick={() => navigate(`/projects/${mockup.id}`)}
+                  onClick={() =>
+                    navigate(`/projects/${mockups[activeMockup]?.id}`)
+                  }
                   className="p-3 absolute left-[calc(100%_-_30rem)] z-20 group-hover:bg-white rounded-lg group-hover:flex flex sm:hidden scale-75 group-hover:scale-100 transition-all duration-500 items-end group-hover:text-black group hover:bg-primary hover:text-white min-w-[180px] min-h-[70px] cursor-pointer sm:text-gray-600"
                 >
                   <div className="size-5 rounded-full bg-gray-700 group-hover:bg-primary hover:bg-white text-white group-hover:text-black flex items-center justify-center absolute top-3 right-3">
@@ -619,27 +625,29 @@ function Home() {
             collaborations, question, or just to say hello.{" "}
           </p>
         </motion.div>
-        <motion.a
-          whileInView={{ y: 0, x: 0, opacity: 1 }}
-          initial={{ y: -200, x: -200, opacity: 0 }}
-          transition={{
-            delay: 2.0,
-            ease: "circInOut",
-            type: "spring",
-            stiffness: 100,
-          }}
-          href="/contact"
-          className=" group flex mt-12 hover:bg-primary  items-end justify-between p-1 rounded-md w-40 h-16 gap-1  bg-[#21212114] dark:bg-secondary hover:text-white"
-        >
-          <span className="text-gray-500 group-hover:text-white transition-all duration-300 p-1">
-            Let’s Talk
-          </span>
-          <div className="h-full flex flex-col items-end">
-            <span className="bg-black/70 group-hover:bg-white transition-all duration-300 rounded-full p-0.5 m-1">
-              <ArrowRight className="size-4 text-sm  text-gray-200 group-hover:text-black group-hover:dark:text-gray-400 -rotate-45" />
+
+        <SendMessageDialog>
+          <motion.button
+            whileInView={{ y: 0, x: 0, opacity: 1 }}
+            initial={{ y: -200, x: -200, opacity: 0 }}
+            transition={{
+              delay: 2.0,
+              ease: "circInOut",
+              type: "spring",
+              stiffness: 100,
+            }}
+            className=" group flex mt-12 hover:bg-primary cursor-pointer items-end justify-between p-1 rounded-md w-40 h-16 gap-1  bg-[#21212114] dark:bg-secondary hover:text-white"
+          >
+            <span className="text-gray-500 group-hover:text-white transition-all duration-300 p-1">
+              Let’s Talk
             </span>
-          </div>
-        </motion.a>
+            <div className="h-full flex flex-col items-end">
+              <span className="bg-black/70 group-hover:bg-white transition-all duration-300 rounded-full p-0.5 m-1">
+                <ArrowRight className="size-4 text-sm  text-gray-200 group-hover:text-black group-hover:dark:text-gray-400 -rotate-45" />
+              </span>
+            </div>
+          </motion.button>
+        </SendMessageDialog>
 
         {/* <div > */}
         <AnimatedGroup

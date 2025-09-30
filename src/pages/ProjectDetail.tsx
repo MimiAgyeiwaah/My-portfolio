@@ -2,6 +2,7 @@ import { Separator } from "@/components/ui/separator";
 import { works } from "../constants";
 import { Link, useParams } from "react-router-dom";
 import { ArrowDownLeft, ArrowRight, ArrowUpRight } from "lucide-react";
+import SendMessageDialog from "@/components/send-email";
 
 function ProjectDetail() {
   const { id } = useParams();
@@ -18,7 +19,6 @@ function ProjectDetail() {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (work: any) => `${work.id}` === `${Number(id) - 1}`
   );
-  console.log(project?.image, "img");
 
   return (
     <div className="w-full h-[calc(100dvh-100px)] flex flex-col px-[0.5rem] sm:px-[1rem] md:px-[5rem] bg-background">
@@ -31,7 +31,7 @@ function ProjectDetail() {
             {project?.title}{" "}
             <span className="font-light">
               {project?.subTitle?.split(" ").map((word, idx) => (
-                <span key={idx} className="flex ">
+                <span key={idx} className="flex lg:text-[2.6rem]">
                   {<span className="font-medium">{word.slice(0, 1)}</span>}
                   {word.slice(1)}
                 </span>
@@ -58,9 +58,9 @@ function ProjectDetail() {
         </div>
         <Separator
           orientation="vertical"
-          className="bg-gray-100 dark:bg-secondary-foreground"
+          className="bg-gray-100 dark:bg-secondary-foreground hidden md:block"
         />
-        <div className="w-full  overflow-y-auto h-full flex flex-col items-start gap-4 mx-8 scrollbar-hidden scroll-smooth">
+        <div className="w-full overflow-y-auto h-full flex flex-col items-start gap-4 md:mx-8 mx-1 scrollbar-hidden scroll-smooth">
           <img
             src={project?.image}
             alt={project?.title}
@@ -196,19 +196,18 @@ function ProjectDetail() {
                 <span className="">question, or just to say hello.</span>
               </p>
 
-              <Link
-                to="/contact"
-                className=" group flex mt-12 hover:bg-primary  items-end justify-between p-1 rounded-md w-40 h-16 gap-1  bg-[#21212114] dark:bg-secondary hover:text-white"
-              >
-                <span className="text-gray-500 group-hover:text-white transition-all duration-300 p-1">
-                  Let’s Talk
-                </span>
-                <div className="h-full flex flex-col items-end">
-                  <span className="bg-black/70 dark:bg-black/30 group-hover:bg-white transition-all duration-300 rounded-full p-0.5 m-1">
-                    <ArrowRight className="size-4 text-sm text-gray-200 group-hover:text-black group-hover:dark:text-gray-400 -rotate-45" />
+              <SendMessageDialog>
+                <button className=" group flex mt-12 hover:bg-primary cursor-pointer items-end justify-between p-1 rounded-md w-40 h-16 gap-1  bg-[#21212114] dark:bg-secondary hover:text-white">
+                  <span className="text-gray-500 group-hover:text-white transition-all duration-300 p-1">
+                    Let’s Talk
                   </span>
-                </div>
-              </Link>
+                  <div className="h-full flex flex-col items-end">
+                    <span className="bg-black/70 dark:bg-black/30 group-hover:bg-white transition-all duration-300 rounded-full p-0.5 m-1">
+                      <ArrowRight className="size-4 text-sm text-gray-200 group-hover:text-black group-hover:dark:text-gray-400 -rotate-45" />
+                    </span>
+                  </div>
+                </button>
+              </SendMessageDialog>
             </section>
 
             {/* social links */}

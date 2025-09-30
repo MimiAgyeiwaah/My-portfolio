@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import ScrollToTop from "../components/scroll-to-top";
 import { Separator } from "../components/ui/separator";
+import SendMessageDialog from "@/components/send-email";
 
 function About() {
   const [activeSection, setActiveSection] = useState<string>("journey");
@@ -416,9 +417,10 @@ function About() {
                 <span className="">question, or just to say hello.</span>
               </p>
 
-              <Link
-                to="/contact"
-                className=" group flex mt-12 hover:bg-primary  items-end justify-between p-1 rounded-md w-40 h-16 gap-1  bg-[#21212114] dark:bg-secondary hover:text-white"
+              
+            <SendMessageDialog>
+              <button
+                className=" group flex mt-12 hover:bg-primary cursor-pointer items-end justify-between p-1 rounded-md w-40 h-16 gap-1  bg-[#21212114] dark:bg-secondary hover:text-white"
               >
                 <span className="text-gray-500 group-hover:text-white transition-all duration-300 p-1">
                   Let’s Talk
@@ -428,7 +430,8 @@ function About() {
                     <ArrowRight className="size-4 text-sm text-gray-200 group-hover:text-black group-hover:dark:text-gray-400 -rotate-45" />
                   </span>
                 </div>
-              </Link>
+                </button>
+              </SendMessageDialog>
             </section>
 
             {/* social links */}
