@@ -277,7 +277,7 @@ export const works = [
         description: [
             {
                 images: [
-                    '/assets/GD10.svg', '/assets/GD11.svg', '/assets/GD1.svg', '/assets/GD2.svg', '/assets/GD3.svg', '/assets/GD12.svg', '/assets/GD7.svg', '/assets/GD5.svg', '/assets/GD6.svg', '/assets/GD4.svg', '/assets/GD8.svg', '/assets/GD9.svg'
+                    '/assets/GD10.svg', '/assets/GD11.svg', '/assets/GD1.svg', '/assets/GD2.svg', '/assets/GD3.svg', '/assets/GD12.svg', '/assets/GD13.svg', '/assets/GD7.svg', '/assets/GD5.svg', '/assets/GD6.svg', '/assets/GD4.svg', '/assets/GD8.svg', '/assets/GD9.svg'
                 ],
             }
         ],
