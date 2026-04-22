@@ -47,7 +47,6 @@ function Projects() {
       >
         <section className="w-fit grid sm:grid-cols-2 gap-4 md:gap-8">
           {works.map((work, idx) => {
-            console.log("work", work);
             return (
               <motion.div
                 variants={{

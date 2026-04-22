@@ -6,6 +6,7 @@ import Projects from "./pages/Projects";
 import Header from "./components/Header";
 import ProjectDetail from "./pages/ProjectDetail";
 import About from "./pages/About";
+// import ScrollToTopLink from "./components/scroll-to-top-link";
 import ScrollToTop from "./components/scroll-to-top";
 
 function App() {
@@ -14,11 +15,10 @@ function App() {
   return (
     <main
       ref={mainContentRef}
-      className="w-screen h-auto overflow-hidden overflow-y-auto flex flex-col items-center bg-white z-10 font-montserrat"
-    >
+      className="w-screen h-auto overflow-hidden overflow-y-auto flex flex-col items-center bg-white z-10 font-montserrat">
       <Header />
-
       <Routes>
+
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/projects" element={<Projects />} />

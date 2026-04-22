@@ -23,27 +23,27 @@ function HowICraft({ howICraft }: { howICraft: HowICraftItem[] }) {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
-              className="border-b border-gray-200 pb-4"
+              className="border-b border-gray-200 dark:border-gray-800 pb-4"
             >
               <button
                 onClick={() => setOpenIndex(openIndex === index ? -1 : index)}
                 className="flex w-full items-center justify-between py-3 text-left cursor-pointer"
               >
-                <span className="text-xl font-normal dark:text-gray-500">
+                <span className="text-xl font-normal dark:text-gray-500 dark:text-white">
                   {item.question}
                 </span>
                 <span
                   className={cn(
-                    `ml-6 flex-shrink-0 rounded-full bg-white p-1`,
+                    `ml-6 flex-shrink-0 rounded-full bg-white p-1 dark:bg-gray-800`,
                     {
-                      "bg-primary": openIndex === index,
+                      "bg-primary dark:bg-primary": openIndex === index,
                     }
                   )}
                 >
                   {openIndex === index ? (
                     <X className="h-5 w-5 text-white" />
                   ) : (
-                    <Plus className="h-6 w-6 text-gray-500" />
+                    <Plus className="h-6 w-6 text-gray-500 dark:text-white" />
                   )}
                 </span>
               </button>
